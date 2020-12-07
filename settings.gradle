@@ -1,0 +1,2 @@
+include ':app'
+rootProject.name = "BAIT.IWB303_HW_F20_ C"
