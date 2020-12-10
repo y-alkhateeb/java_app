@@ -1,4 +1,4 @@
-package com.example.baitiwb303_hw_f20_c.activity.ui.home;
+package com.example.baitiwb303_hw_f20_c.activity.ui.section;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,17 +15,17 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.baitiwb303_hw_f20_c.R;
 
 
-public class HomeFragment extends Fragment {
+public class SectionFragment extends Fragment {
 
-    private HomeViewModel homeViewModel;
+    private SectionModel sectionModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
-        final TextView textView = root.findViewById(R.id.text_home);
-        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        sectionModel =
+                new ViewModelProvider(this).get(SectionModel.class);
+        View root = inflater.inflate(R.layout.fragment_section, container, false);
+        final TextView textView = root.findViewById(R.id.text_section);
+        sectionModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

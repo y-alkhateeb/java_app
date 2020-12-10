@@ -1,4 +1,4 @@
-package com.example.baitiwb303_hw_f20_c.activity.ui.gallery;
+package com.example.baitiwb303_hw_f20_c.activity.ui.student;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,17 +15,17 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.baitiwb303_hw_f20_c.R;
 
 
-public class GalleryFragment extends Fragment {
+public class StudentFragment extends Fragment {
 
-    private GalleryViewModel galleryViewModel;
+    private StudentViewModel studentViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        galleryViewModel =
-                new ViewModelProvider(this).get(GalleryViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_gallery, container, false);
-        final TextView textView = root.findViewById(R.id.text_gallery);
-        galleryViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        studentViewModel =
+                new ViewModelProvider(this).get(StudentViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_student, container, false);
+        final TextView textView = root.findViewById(R.id.text_student);
+        studentViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

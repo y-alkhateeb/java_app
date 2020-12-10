@@ -1,4 +1,4 @@
-package com.example.baitiwb303_hw_f20_c.activity.ui.slideshow;
+package com.example.baitiwb303_hw_f20_c.activity.ui.course;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,17 +15,17 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.baitiwb303_hw_f20_c.R;
 
 
-public class SlideshowFragment extends Fragment {
+public class CourseFragment extends Fragment {
 
-    private SlideshowViewModel slideshowViewModel;
+    private CourseViewModel courseViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        slideshowViewModel =
-                new ViewModelProvider(this).get(SlideshowViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_slideshow, container, false);
-        final TextView textView = root.findViewById(R.id.text_slideshow);
-        slideshowViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        courseViewModel =
+                new ViewModelProvider(this).get(CourseViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_course, container, false);
+        final TextView textView = root.findViewById(R.id.text_course);
+        courseViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
