@@ -33,7 +33,7 @@ import static com.example.baitiwb303_hw_f20_c.database.DatabaseHelper.Column_Acc
 public class LoginActivity extends AppCompatActivity {
 
     EditText username, password;
-    Button login;
+    Button login,signUp;
     boolean isEmailValid, isPasswordValid;
     TextInputLayout emailError, passError;
     DatabaseHelper databaseHelper;
@@ -47,6 +47,7 @@ public class LoginActivity extends AppCompatActivity {
         username = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.password);
         login = (Button) findViewById(R.id.login);
+        signUp = (Button) findViewById(R.id.sign_up);
         emailError = (TextInputLayout) findViewById(R.id.emailError);
         passError = (TextInputLayout) findViewById(R.id.passError);
 
@@ -54,6 +55,14 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 SetValidation();
+            }
+        });
+        signUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
+                LoginActivity.this.finish();
+                startActivity(intent);
             }
         });
 

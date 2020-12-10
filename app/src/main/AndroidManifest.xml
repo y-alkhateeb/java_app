@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BAITIWB303_HW_F20_C">
+        <activity android:name=".activity.SignUpActivity"></activity>
         <activity
             android:name=".activity.MainActivity"
             android:label="@string/title_activity_main"
