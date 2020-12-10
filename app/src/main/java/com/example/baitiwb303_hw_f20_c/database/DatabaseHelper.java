@@ -21,55 +21,55 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-    private static final String DATABASE_NAME = "SVU_DB";
-    private static final String TABLE_Account = "account";
-    private static final String TABLE_COURSE = "course";
-    private static final String TABLE_Section = "section";
-    private static final String TABLE_Instructor = "instructor";
-    private static final String TABLE_Enrollment = "enrollment";
+    public static final String DATABASE_NAME = "SVU_DB";
+    public static final String TABLE_Account = "account";
+    public static final String TABLE_COURSE = "course";
+    public static final String TABLE_Section = "section";
+    public static final String TABLE_Instructor = "instructor";
+    public static final String TABLE_Enrollment = "enrollment";
 
 
     // TABLE Account
-    private static final String Column_Account_ID = "account_id";
-    private static final String Column_Account_First_Name = "account_first_name";
-    private static final String Column_Account_Last_Name = "account_last_name";
-    private static final String Column_Account_User_Name = "account_user_name";
-    private static final String Column_Account_Password = "account_password";
-    private static final String Column_Account_Reg_Yeer = "account_reg_year";
-    private static final String Column_Account_Gender = "account_gender";
-    private static final String Column_Account_Address = "account_address";
-    private static final String Column_Account_Mobile = "account_mobile";
-    private static final String Column_Account_Privilege = "account_privilege";
+    public static final String Column_Account_ID = "account_id";
+    public static final String Column_Account_First_Name = "account_first_name";
+    public static final String Column_Account_Last_Name = "account_last_name";
+    public static final String Column_Account_User_Name = "account_user_name";
+    public static final String Column_Account_Password = "account_password";
+    public static final String Column_Account_Reg_Yeer = "account_reg_year";
+    public static final String Column_Account_Gender = "account_gender";
+    public static final String Column_Account_Address = "account_address";
+    public static final String Column_Account_Mobile = "account_mobile";
+    public static final String Column_Account_Privilege = "account_privilege";
 
 
     // TABLE Course
-    private static final String Column_Course_ID = "course_id";
-    private static final String Column_Course_Tittle = "course_tittle";
-    private static final String Column_Course_Hours = "course_hours";
+    public static final String Column_Course_ID = "course_id";
+    public static final String Column_Course_Tittle = "course_tittle";
+    public static final String Column_Course_Hours = "course_hours";
 
 
     // TABLE Instructor
-    private static final String Column_Instructor_ID = "instructor_id";
-    private static final String Column_Instructor_First_Name = "instructor_first_name";
-    private static final String Column_Instructor_Last_Name = "instructor_last_name";
-    private static final String Column_Instructor_Gender = "instructor_gender";
-    private static final String Column_Instructor_Address = "instructor_address";
-    private static final String Column_Instructor_Mobile = "instructor_mobile";
+    public static final String Column_Instructor_ID = "instructor_id";
+    public static final String Column_Instructor_First_Name = "instructor_first_name";
+    public static final String Column_Instructor_Last_Name = "instructor_last_name";
+    public static final String Column_Instructor_Gender = "instructor_gender";
+    public static final String Column_Instructor_Address = "instructor_address";
+    public static final String Column_Instructor_Mobile = "instructor_mobile";
 
 
     // TABLE Section
-    private static final String Column_Section_ID = "section_id";
-    private static final String Column_Section_No = "section_section_no";
-    private static final String Column_Section_Room_No = "section_room_no";
-    private static final String Column_Section_Time = "section_time";
+    public static final String Column_Section_ID = "section_id";
+    public static final String Column_Section_No = "section_section_no";
+    public static final String Column_Section_Room_No = "section_room_no";
+    public static final String Column_Section_Time = "section_time";
 
     // TABLE Enrollment
-    private static final String Column_Enrollment_ID = "enrollment_id";
-    private static final String Column_Enrollment_Grade = "enrollment_grade";
+    public static final String Column_Enrollment_ID = "enrollment_id";
+    public static final String Column_Enrollment_Grade = "enrollment_grade";
 
 
     //Create TABLE Accounts
-    String Create_TABLE_Accounts = "CREATE TABLE " + TABLE_Account + " (" + Column_Account_ID + "INTEGER PRIMARY KEY AUTOINCREMENT, " +
+    String Create_TABLE_Accounts = "CREATE TABLE " + TABLE_Account + " (" + Column_Account_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             Column_Account_First_Name + " TEXT," +
             Column_Account_Last_Name + " TEXT," +
             Column_Account_User_Name + " TEXT," +
@@ -83,14 +83,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     // Create TABLE Courses
-    String Create_TABLE_Courses = "CREATE TABLE " + TABLE_COURSE + " (" + Column_Course_ID + "INTEGER PRIMARY KEY AUTOINCREMENT, " +
+    String Create_TABLE_Courses = "CREATE TABLE " + TABLE_COURSE + " (" + Column_Course_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             Column_Course_Tittle + " TEXT," +
             Column_Course_Hours + " TEXT" +
             ")";
 
 
     // Create TABLE Instructor
-    String Create_TABLE_Instructor = "CREATE TABLE " + TABLE_Instructor + " (" + Column_Instructor_ID + "INTEGER PRIMARY KEY AUTOINCREMENT, " +
+    String Create_TABLE_Instructor = "CREATE TABLE " + TABLE_Instructor + " (" + Column_Instructor_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             Column_Instructor_First_Name + " TEXT," +
             Column_Instructor_Last_Name + " TEXT," +
             Column_Instructor_Gender + " TEXT," +
@@ -100,7 +100,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     // Create TABLE Sections
-    String Create_TABLE_Sections = "CREATE TABLE " + TABLE_Section + " (" + Column_Section_ID + "INTEGER PRIMARY KEY AUTOINCREMENT, " +
+    String Create_TABLE_Sections = "CREATE TABLE " + TABLE_Section + " (" + Column_Section_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             Column_Course_ID + " INTEGER," +
             Column_Instructor_ID + " INTEGER," +
             Column_Section_No + " TEXT," +
@@ -110,7 +110,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     // Create TABLE Enrollment
-    String Create_TABLE_Enrollment = "CREATE TABLE " + TABLE_Enrollment + " (" + Column_Enrollment_ID + "INTEGER PRIMARY KEY AUTOINCREMENT, " +
+    String Create_TABLE_Enrollment = "CREATE TABLE " + TABLE_Enrollment + " (" + Column_Enrollment_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             Column_Account_ID + " INTEGER," +
             Column_Course_ID + " INTEGER," +
             Column_Section_ID + " INTEGER," +
@@ -313,6 +313,80 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         return resultSet;
+    }
+
+    public JSONArray SignIn(String Table_Name, String UserName, String Password) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        String searchQuery;
+        searchQuery = "select * from " + Table_Name + " where account_user_name " + " = '" + UserName + "'" + " and " + " account_password " + " = '" + Password + "';";
+
+        Cursor cursor = db.rawQuery(searchQuery, null);
+        JSONArray resultSet = new JSONArray();
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+
+            int totalColumn = cursor.getColumnCount();
+            JSONObject rowObject = new JSONObject();
+
+            for (int i = 0; i < totalColumn; i++) {
+                if (cursor.getColumnName(i) != null) {
+                    try {
+                        if (cursor.getString(i) != null) {
+                            rowObject.put(cursor.getColumnName(i), cursor.getString(i));
+                        } else {
+                            rowObject.put(cursor.getColumnName(i), "");
+                        }
+                    } catch (Exception e) {
+                        return null;
+                    }
+                }
+            }
+            resultSet.put(rowObject);
+            cursor.moveToNext();
+        }
+
+
+        cursor.close();
+        db.close();
+        return resultSet;
+    }
+
+
+    public Account SignUp(Account data) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        try {
+            long result = -1;
+
+            contentValues.put(Column_Account_First_Name, data.getFirst_name());
+            contentValues.put(Column_Account_Last_Name, data.getLast_name());
+            contentValues.put(Column_Account_User_Name, data.getUser_name());
+            contentValues.put(Column_Account_Password, data.getPassword());
+            contentValues.put(Column_Account_Reg_Yeer, data.getReg_Year());
+            contentValues.put(Column_Account_Gender, data.getGender());
+            contentValues.put(Column_Account_Address, data.getAddress());
+            contentValues.put(Column_Account_Mobile, data.getMobile_No());
+            contentValues.put(Column_Account_Privilege, data.getPrivilege());
+
+            result = db.insert(TABLE_Account, null, contentValues);
+
+
+            if (result == -1) {
+                db.close();
+                Log.i("InsertIntoAccount", "InsertIntoAccount: false");
+                return null;
+            } else {
+                db.close();
+                Log.i("InsertIntoAccount", "InsertIntoAccount: true");
+                return data;
+            }
+        } catch (Exception e) {
+            Log.i("InsertIntoAccount", "Exception : " + e.getMessage());
+            return null;
+        }
+
+
     }
 
     public JSONArray GetDataQuestionUpload(String Table_Name, String VisitID) {
