@@ -12,6 +12,8 @@ import android.widget.Spinner;
 
 import com.example.baitiwb303_hw_f20_c.Models.Account;
 import com.example.baitiwb303_hw_f20_c.R;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 
 public class CreateStudentActivity extends AppCompatActivity {
     private EditText username, password, firstName, lastName, address, phoneNumber;
@@ -53,7 +55,11 @@ public class CreateStudentActivity extends AppCompatActivity {
                 account.setMobile_No(phoneNumber.getText().toString());
                 account.setPrivilege("2");
 
-                studentViewModel.createAccount(account);
+                if (studentViewModel.createAccount(account)){
+                    Snackbar.make(v,"You Added a new student", BaseTransientBottomBar.LENGTH_SHORT);
+                    finish();
+                }
+                else Snackbar.make(v,"Failed to add a new student please try again", BaseTransientBottomBar.LENGTH_SHORT);
             }
         });
     }
