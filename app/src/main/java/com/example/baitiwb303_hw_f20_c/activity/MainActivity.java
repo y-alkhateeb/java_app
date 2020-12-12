@@ -1,12 +1,18 @@
 package com.example.baitiwb303_hw_f20_c.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
+import android.widget.TextView;
 
+import com.example.baitiwb303_hw_f20_c.Models.Account;
 import com.example.baitiwb303_hw_f20_c.R;
+import com.example.baitiwb303_hw_f20_c.activity.ui.course.CreateCourseActivity;
+import com.example.baitiwb303_hw_f20_c.activity.ui.dr.CreateDrActivity;
+import com.example.baitiwb303_hw_f20_c.activity.ui.section.CreateSectionActivity;
+import com.example.baitiwb303_hw_f20_c.activity.ui.student.CreateStudentActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.navigation.NavController;
@@ -20,19 +26,35 @@ import androidx.appcompat.widget.Toolbar;
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
+    private Toolbar toolbar;
+    int currentFragment = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                if(currentFragment == 0){
+                    Intent intent = new Intent(MainActivity.this, CreateSectionActivity.class);
+                    startActivity(intent);
+                }
+                else if(currentFragment == 1){
+                    Intent intent = new Intent(MainActivity.this, CreateStudentActivity.class);
+                    startActivity(intent);
+                }
+                else if(currentFragment == 2){
+                    Intent intent = new Intent(MainActivity.this, CreateCourseActivity.class);
+                    startActivity(intent);
+                }
+                else if(currentFragment == 3){
+                    Intent intent = new Intent(MainActivity.this, CreateDrActivity.class);
+                    startActivity(intent);
+                }
             }
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -40,12 +62,35 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_section, R.id.nav_student, R.id.nav_course,R.id.nav_dr)
+                R.id.nav_section, R.id.nav_student, R.id.nav_course, R.id.nav_dr)
                 .setDrawerLayout(drawer)
                 .build();
+
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+        navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
+            if(destination.getId() == R.id.nav_section){
+                currentFragment = 0;
+            }
+            else if(destination.getId() == R.id.nav_student){
+                currentFragment = 1;
+            }
+            else if(destination.getId() == R.id.nav_course){
+                currentFragment = 2;
+            }
+            else if(destination.getId() == R.id.nav_dr){
+                currentFragment = 3;
+            }
+        });
+        Intent intent = getIntent();
+        Account account = (Account) intent.getSerializableExtra("LOGIN_INFO");
+        View hView = navigationView.getHeaderView(0);
+        TextView nav_full_name = (TextView) hView.findViewById(R.id.nav_bar_full_name);
+        TextView nav_user_name = (TextView) hView.findViewById(R.id.nav_bar_username);
+        String full_name = account.getFirst_name() + " " + account.getLast_name();
+        nav_full_name.setText(full_name);
+        nav_user_name.setText(account.getUser_name());
     }
 
     @Override

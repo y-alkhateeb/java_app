@@ -315,11 +315,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return resultSet;
     }
 
-    public JSONArray SignIn(String Table_Name, String UserName, String Password) {
+    public JSONArray SignIn(String UserName, String Password) {
 
         SQLiteDatabase db = this.getWritableDatabase();
         String searchQuery;
-        searchQuery = "select * from " + Table_Name + " where account_user_name " + " = '" + UserName + "'" + " and " + " account_password " + " = '" + Password + "';";
+        searchQuery = "select * from " + "account" + " where account_user_name " + " = '" + UserName + "'" + " and " + " account_password " + " = '" + Password + "';";
 
         Cursor cursor = db.rawQuery(searchQuery, null);
         JSONArray resultSet = new JSONArray();
@@ -358,7 +358,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         try {
             long result = -1;
-
             contentValues.put(Column_Account_First_Name, data.getFirst_name());
             contentValues.put(Column_Account_Last_Name, data.getLast_name());
             contentValues.put(Column_Account_User_Name, data.getUser_name());
@@ -433,6 +432,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(Create_TABLE_Sections);
         db.execSQL(Create_TABLE_Instructor);
         db.execSQL(Create_TABLE_Enrollment);
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(Column_Account_First_Name, "SVU");
+        contentValues.put(Column_Account_Last_Name, "Uni");
+        contentValues.put(Column_Account_User_Name, "950404087");
+        contentValues.put(Column_Account_Password, "12345678");
+        contentValues.put(Column_Account_Reg_Yeer, "2020");
+        contentValues.put(Column_Account_Gender, "Male");
+        contentValues.put(Column_Account_Address, "Damascus");
+        contentValues.put(Column_Account_Mobile, "0950404087");
+        contentValues.put(Column_Account_Privilege, "1");
+        db.insert(TABLE_Account, null, contentValues);
     }
 
     @Override
@@ -443,6 +453,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_Instructor);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_Enrollment);
         onCreate(db);
+
     }
 
     public DatabaseHelper(Context context) {

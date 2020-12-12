@@ -1,7 +1,6 @@
 package com.example.baitiwb303_hw_f20_c.activity;
 
 import android.content.Intent;
-import android.util.Patterns;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -33,8 +32,8 @@ import static com.example.baitiwb303_hw_f20_c.database.DatabaseHelper.Column_Acc
 public class LoginActivity extends AppCompatActivity {
 
     EditText username, password;
-    Button login,signUp;
-    boolean isEmailValid, isPasswordValid;
+    Button login;
+    boolean isUserNameValid, isPasswordValid;
     TextInputLayout emailError, passError;
     DatabaseHelper databaseHelper;
     JSONArray Response_SignIn;
@@ -47,35 +46,23 @@ public class LoginActivity extends AppCompatActivity {
         username = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.password);
         login = (Button) findViewById(R.id.login);
-        signUp = (Button) findViewById(R.id.sign_up);
         emailError = (TextInputLayout) findViewById(R.id.emailError);
         passError = (TextInputLayout) findViewById(R.id.passError);
-
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 SetValidation();
             }
         });
-        signUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
-                LoginActivity.this.finish();
-                startActivity(intent);
-            }
-        });
-
-
     }
 
     public void SetValidation() {
         // Check for a valid email address.
         if (username.getText().toString().isEmpty()) {
             emailError.setError(getResources().getString(R.string.username_error));
-            isEmailValid = false;
+            isUserNameValid = false;
         } else {
-            isEmailValid = true;
+            isUserNameValid = true;
             emailError.setErrorEnabled(false);
         }
 
@@ -91,32 +78,31 @@ public class LoginActivity extends AppCompatActivity {
             passError.setErrorEnabled(false);
         }
 
-        if (isEmailValid && isPasswordValid) {
-            Response_SignIn = databaseHelper.SignIn("account", username.getText().toString(), password.getText().toString());
+        if (isUserNameValid && isPasswordValid) {
+            Response_SignIn = databaseHelper.SignIn(username.getText().toString(), password.getText().toString());
             if (Response_SignIn.length() > 0) {
-                JSONObject json_data_sign_in = new JSONObject();
-                for (int i = 0; i < Response_SignIn.length(); i++) {
-                    try {
-                        json_data_sign_in = Response_SignIn.getJSONObject(i);
-                        Account account = new Account();
-                        account.setAccount_id(json_data_sign_in.getString(Column_Account_ID));
-                        account.setFirst_name(json_data_sign_in.getString(Column_Account_First_Name));
-                        account.setLast_name(json_data_sign_in.getString(Column_Account_Last_Name));
-                        account.setUser_name(json_data_sign_in.getString(Column_Account_User_Name));
-                        account.setPassword(json_data_sign_in.getString(Column_Account_Password));
-                        account.setReg_Year(json_data_sign_in.getString(Column_Account_Reg_Yeer));
-                        account.setGender(json_data_sign_in.getString(Column_Account_Gender));
-                        account.setAddress(json_data_sign_in.getString(Column_Account_Address));
-                        account.setMobile_No(json_data_sign_in.getString(Column_Account_Mobile));
-                        account.setPrivilege(json_data_sign_in.getString(Column_Account_Privilege));
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+                try {
+                    Toast.makeText(getApplicationContext(), "Successfully", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(this, MainActivity.class);
+                    JSONObject json_data_sign_in;
+                    json_data_sign_in = Response_SignIn.getJSONObject(0);
+                    Account account = new Account();
+                    account.setAccount_id(json_data_sign_in.getString(Column_Account_ID));
+                    account.setFirst_name(json_data_sign_in.getString(Column_Account_First_Name));
+                    account.setLast_name(json_data_sign_in.getString(Column_Account_Last_Name));
+                    account.setUser_name(json_data_sign_in.getString(Column_Account_User_Name));
+                    account.setPassword(json_data_sign_in.getString(Column_Account_Password));
+                    account.setReg_Year(json_data_sign_in.getString(Column_Account_Reg_Yeer));
+                    account.setGender(json_data_sign_in.getString(Column_Account_Gender));
+                    account.setAddress(json_data_sign_in.getString(Column_Account_Address));
+                    account.setMobile_No(json_data_sign_in.getString(Column_Account_Mobile));
+                    account.setPrivilege(json_data_sign_in.getString(Column_Account_Privilege));
+                    intent.putExtra("LOGIN_INFO", account);
+                    this.finish();
+                    startActivity(intent);
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
-                Toast.makeText(getApplicationContext(), "Successfully", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this, MainActivity.class);
-                this.finish();
-                startActivity(intent);
             }
             else
             {

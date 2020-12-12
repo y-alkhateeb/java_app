@@ -1,6 +1,15 @@
 <resources>
     <string name="app_name">SVU</string>
     <string name="prompt_username">User Name</string>
+    <string name="prompt_first_name">First Name</string>
+    <string name="first_nameError">Please Enter Your First Name</string>
+    <string name="prompt_last_name">Last Name</string>
+    <string name="last_nameError">Please Enter Your Last Name</string>
+    <string name="prompt_phone">Phone Number</string>
+    <string name="phoneError">Please Enter Your Phone Number</string>
+    <string name="prompt_address">Address</string>
+    <string name="addressError">Please Enter Your Address</string>
+    <string name="add_student">Add Student</string>
     <string name="prompt_password">Password</string>
     <string name="login">Login</string>
     <string name="sign_up">SignUp</string>
@@ -23,4 +32,11 @@
     <string name="menu_gallery">Student</string>
     <string name="menu_slideshow">Course</string>
     <string name="menu_dr">Doctors</string>
+
+    <string-array name="gender_array">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+
+
 </resources>

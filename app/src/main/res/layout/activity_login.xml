@@ -86,22 +86,6 @@
                     android:textColor="@android:color/white"
                     android:textSize="16sp"/>
 
-                    <TextView
-                        android:gravity="center"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Or"/>
-
-                    <Button
-                        android:id="@+id/sign_up"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_margin="20dp"
-                        android:background="@drawable/button_gradient"
-                        android:text="@string/sign_up"
-                        android:textColor="@android:color/white"
-                        android:textSize="16sp"/>
-
                 </LinearLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>

@@ -12,7 +12,10 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.baitiwb303_hw_f20_c.Models.Account;
 import com.example.baitiwb303_hw_f20_c.R;
+
+import java.util.List;
 
 
 public class StudentFragment extends Fragment {
@@ -25,10 +28,11 @@ public class StudentFragment extends Fragment {
                 new ViewModelProvider(this).get(StudentViewModel.class);
         View root = inflater.inflate(R.layout.fragment_student, container, false);
         final TextView textView = root.findViewById(R.id.text_student);
-        studentViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+
+        studentViewModel.getAccount().observe(getViewLifecycleOwner(), new Observer<List<Account>>() {
             @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
+            public void onChanged(@Nullable List<Account> s) {
+                textView.setText(s.get(0).getUser_name());
             }
         });
         return root;
