@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BAITIWB303_HW_F20_C">
-        <activity android:name=".activity.ui.dr.CreateDrActivity"></activity>
+        <activity android:name=".activity.ui.SettingActivity"></activity>
+        <activity android:name=".activity.ui.dr.CreateDrActivity" />
         <activity android:name=".activity.ui.course.CreateCourseActivity" />
         <activity android:name=".activity.ui.section.CreateSectionActivity" />
         <activity android:name=".activity.ui.student.CreateStudentActivity" />

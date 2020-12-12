@@ -2,12 +2,14 @@ package com.example.baitiwb303_hw_f20_c.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.TextView;
 
 import com.example.baitiwb303_hw_f20_c.Models.Account;
 import com.example.baitiwb303_hw_f20_c.R;
+import com.example.baitiwb303_hw_f20_c.activity.ui.SettingActivity;
 import com.example.baitiwb303_hw_f20_c.activity.ui.course.CreateCourseActivity;
 import com.example.baitiwb303_hw_f20_c.activity.ui.dr.CreateDrActivity;
 import com.example.baitiwb303_hw_f20_c.activity.ui.section.CreateSectionActivity;
@@ -29,6 +31,16 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
     int currentFragment = 0;
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        if (item.getItemId() == R.id.action_settings) {
+            Intent intent = new Intent(this, SettingActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
