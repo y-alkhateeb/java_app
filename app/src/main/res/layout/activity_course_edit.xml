@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.ui.course.CreateCourseActivity">
+    tools:context=".activity.ui.course.CourseEditActivity">
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,7 +15,7 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/create_course_title"
+            android:id="@+id/edit_course_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -24,8 +26,9 @@
             android:paddingLeft="5dp"
             android:singleLine="true" />
 
+
         <EditText
-            android:id="@+id/create_course_hours"
+            android:id="@+id/edit_course_hours"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -36,19 +39,18 @@
             android:paddingLeft="5dp"
             android:singleLine="true" />
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/create_course"
+                android:id="@+id/edit_save_change_course"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_margin="20dp"
                 android:background="@drawable/button_gradient"
-                android:text="@string/add_course"
+                android:text="@string/save_changes"
                 android:textColor="@android:color/white"
                 android:textSize="16sp" />
 

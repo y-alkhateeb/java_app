@@ -8,8 +8,14 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.BAITIWB303_HW_F20_C">
-        <activity android:name=".activity.ui.SettingActivity"></activity>
+        android:theme="@style/AppTheme">
+        <activity android:name=".activity.ui.course.CourseEditActivity"></activity>
+        <activity android:name=".activity.ui.course.CourseDetailsActivity" />
+        <activity android:name=".activity.ui.section.SectionEditActivity" />
+        <activity android:name=".activity.ui.section.SectionDetailsActivity" />
+        <activity android:name=".activity.ui.student.StudentEditActivity" />
+        <activity android:name=".activity.ui.student.StudentDetailsActivity" />
+        <activity android:name=".activity.ui.SettingActivity" />
         <activity android:name=".activity.ui.dr.CreateDrActivity" />
         <activity android:name=".activity.ui.course.CreateCourseActivity" />
         <activity android:name=".activity.ui.section.CreateSectionActivity" />
@@ -17,7 +23,7 @@
         <activity
             android:name=".activity.MainActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/Theme.BAITIWB303_HW_F20_C.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity android:name=".activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

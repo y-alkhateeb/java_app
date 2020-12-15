@@ -9,16 +9,14 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 
-import com.example.baitiwb303_hw_f20_c.Models.Account;
-import com.example.baitiwb303_hw_f20_c.Models.Course;
-import com.example.baitiwb303_hw_f20_c.Models.Enrollment;
-import com.example.baitiwb303_hw_f20_c.Models.Instructor;
-import com.example.baitiwb303_hw_f20_c.Models.Sections;
+import com.example.baitiwb303_hw_f20_c.Models.AccountM;
+import com.example.baitiwb303_hw_f20_c.Models.CourseM;
+import com.example.baitiwb303_hw_f20_c.Models.EnrollmentM;
+import com.example.baitiwb303_hw_f20_c.Models.InstructorM;
+import com.example.baitiwb303_hw_f20_c.Models.SectionsM;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-
-import java.util.ArrayList;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "SVU_DB";
@@ -118,7 +116,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             ")";
 
 
-    public void InsertIntoTableAccount(Account data) {
+    public void InsertIntoTableAccount(AccountM data) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         try {
@@ -148,7 +146,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public void InsertIntoTableCourse(Course data) {
+    public void InsertIntoTableCourse(CourseM data) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         try {
@@ -169,7 +167,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public void InsertIntoTableEnrollment(Enrollment data) {
+    public void InsertIntoTableEnrollment(EnrollmentM data) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         try {
@@ -192,7 +190,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public void InsertIntoTableSection(Sections data) {
+    public void InsertIntoTableSection(SectionsM data) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         try {
@@ -216,7 +214,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public void InsertIntoTableInstructor(Instructor data) {
+    public void InsertIntoTableInstructor(InstructorM data) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         try {
@@ -353,7 +351,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public Account SignUp(Account data) {
+    public AccountM SignUp(AccountM data) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         try {
@@ -369,6 +367,34 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             contentValues.put(Column_Account_Privilege, data.getPrivilege());
 
             result = db.insert(TABLE_Account, null, contentValues);
+
+
+            if (result == -1) {
+                db.close();
+                Log.i("InsertIntoAccount", "InsertIntoAccount: false");
+                return null;
+            } else {
+                db.close();
+                Log.i("InsertIntoAccount", "InsertIntoAccount: true");
+                return data;
+            }
+        } catch (Exception e) {
+            Log.i("InsertIntoAccount", "Exception : " + e.getMessage());
+            return null;
+        }
+
+
+    }
+
+    public CourseM CreateCourse(CourseM data) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        try {
+            long result = -1;
+            contentValues.put(Column_Course_Tittle, data.getCourse_tittle());
+            contentValues.put(Column_Course_Hours, data.getCourse_hours());
+
+            result = db.insert(TABLE_COURSE, null, contentValues);
 
 
             if (result == -1) {

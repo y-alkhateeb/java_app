@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.ui.student.CreateStudentActivity">
-
-
+    tools:context=".activity.ui.section.SectionEditActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,11 +19,11 @@
             android:layout_marginTop="5dp">
 
             <EditText
-                android:id="@+id/create_username"
+                android:id="@+id/edit_room_no"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:hint="@string/prompt_username"
+                android:hint="@string/section_name"
                 android:inputType="text"
                 android:maxLines="1"
                 android:paddingStart="5dp"
@@ -41,11 +39,11 @@
             android:layout_marginTop="5dp">
 
             <EditText
-                android:id="@+id/create_first_name"
+                android:id="@+id/edit_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:hint="@string/prompt_first_name"
+                android:hint="@string/prompt_time"
                 android:inputType="text"
                 android:maxLines="1"
                 android:paddingStart="5dp"
@@ -55,58 +53,17 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/last_nameError"
+            android:id="@+id/first_section_number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp">
 
             <EditText
-                android:id="@+id/create_last_name"
+                android:id="@+id/edit_section_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:hint="@string/prompt_last_name"
-                android:inputType="text"
-                android:maxLines="1"
-                android:paddingStart="5dp"
-                android:paddingLeft="5dp"
-                android:singleLine="true" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/phoneError"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp">
-
-            <EditText
-                android:id="@+id/create_phone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:hint="@string/prompt_phone"
-                android:inputType="text"
-                android:maxLines="1"
-                android:paddingStart="5dp"
-                android:paddingLeft="5dp"
-                android:singleLine="true"
-                tools:ignore="TextFields" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/addressError"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp">
-
-            <EditText
-                android:id="@+id/create_address"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:hint="@string/prompt_address"
+                android:hint="@string/prompt_section_number"
                 android:inputType="text"
                 android:maxLines="1"
                 android:paddingStart="5dp"
@@ -116,31 +73,15 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <Spinner
-            android:id="@+id/create_spinner"
+            android:id="@+id/edit_spinner_course"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/passError"
+        <Spinner
+            android:id="@+id/edit_spinner_instructor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            app:passwordToggleEnabled="true">
-
-            <EditText
-                android:id="@+id/create_password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:hint="@string/prompt_password"
-                android:inputType="textPassword"
-                android:maxLines="1"
-                android:paddingStart="5dp"
-                android:paddingLeft="5dp"
-                android:singleLine="true" />
-
-        </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginTop="10dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -148,16 +89,15 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/create_account"
+                android:id="@+id/edit_section_save"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_margin="20dp"
                 android:background="@drawable/button_gradient"
-                android:text="@string/add_student"
+                android:text="@string/save_changes"
                 android:textColor="@android:color/white"
                 android:textSize="16sp" />
 
         </LinearLayout>
     </LinearLayout>
-
 </ScrollView>

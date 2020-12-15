@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-public class Sections implements Serializable {
+public class SectionsM implements Serializable {
 
     @SerializedName("section_id")
     String section_id;

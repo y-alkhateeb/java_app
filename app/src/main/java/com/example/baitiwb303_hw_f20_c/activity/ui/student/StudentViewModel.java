@@ -7,7 +7,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.baitiwb303_hw_f20_c.Models.Account;
+import com.example.baitiwb303_hw_f20_c.Models.AccountM;
 import com.example.baitiwb303_hw_f20_c.database.DatabaseHelper;
 
 import org.json.JSONArray;
@@ -30,46 +30,46 @@ import static com.example.baitiwb303_hw_f20_c.database.DatabaseHelper.Column_Acc
 
 public class StudentViewModel extends AndroidViewModel {
 
-    private final MutableLiveData<List<Account>> mAllAccount;
-    private  final List<Account> accountList;
+    private final MutableLiveData<List<AccountM>> mAllAccount;
+    private  final List<AccountM> accountMList;
     private DatabaseHelper databaseHelper;
     private JSONArray jsonArray;
 
     public StudentViewModel(@NonNull Application application) {
         super(application);
         mAllAccount = new MutableLiveData<>();
-        accountList = new ArrayList<>();
+        accountMList = new ArrayList<>();
         databaseHelper = new DatabaseHelper(application.getApplicationContext());
         jsonArray = databaseHelper.get_all_data("account");
         if (jsonArray.length() > 0) {
             for (int i = 0; i < jsonArray.length(); i++) {
                 try {
-                    Account account = new Account();
-                    account.setAccount_id(jsonArray.getJSONObject(i).getString(Column_Account_ID));
-                    account.setFirst_name(jsonArray.getJSONObject(i).getString(Column_Account_First_Name));
-                    account.setLast_name(jsonArray.getJSONObject(i).getString(Column_Account_Last_Name));
-                    account.setUser_name(jsonArray.getJSONObject(i).getString(Column_Account_User_Name));
-                    account.setPassword(jsonArray.getJSONObject(i).getString(Column_Account_Password));
-                    account.setReg_Year(jsonArray.getJSONObject(i).getString(Column_Account_Reg_Yeer));
-                    account.setGender(jsonArray.getJSONObject(i).getString(Column_Account_Gender));
-                    account.setAddress(jsonArray.getJSONObject(i).getString(Column_Account_Address));
-                    account.setMobile_No(jsonArray.getJSONObject(i).getString(Column_Account_Mobile));
-                    account.setPrivilege(jsonArray.getJSONObject(i).getString(Column_Account_Privilege));
-                    accountList.add(account);
+                    AccountM accountM = new AccountM();
+                    accountM.setAccount_id(jsonArray.getJSONObject(i).getString(Column_Account_ID));
+                    accountM.setFirst_name(jsonArray.getJSONObject(i).getString(Column_Account_First_Name));
+                    accountM.setLast_name(jsonArray.getJSONObject(i).getString(Column_Account_Last_Name));
+                    accountM.setUser_name(jsonArray.getJSONObject(i).getString(Column_Account_User_Name));
+                    accountM.setPassword(jsonArray.getJSONObject(i).getString(Column_Account_Password));
+                    accountM.setReg_Year(jsonArray.getJSONObject(i).getString(Column_Account_Reg_Yeer));
+                    accountM.setGender(jsonArray.getJSONObject(i).getString(Column_Account_Gender));
+                    accountM.setAddress(jsonArray.getJSONObject(i).getString(Column_Account_Address));
+                    accountM.setMobile_No(jsonArray.getJSONObject(i).getString(Column_Account_Mobile));
+                    accountM.setPrivilege(jsonArray.getJSONObject(i).getString(Column_Account_Privilege));
+                    accountMList.add(accountM);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
-            mAllAccount.setValue(accountList);
+            mAllAccount.setValue(accountMList);
         }
     }
 
-    public LiveData<List<Account>> getAccount() {
+    public LiveData<List<AccountM>> getAccount() {
         return mAllAccount;
     }
 
-    public boolean createAccount(Account account){
-        return databaseHelper.SignUp(account) != null;
+    public boolean createAccount(AccountM accountM){
+        return databaseHelper.SignUp(accountM) != null;
     }
 
 }

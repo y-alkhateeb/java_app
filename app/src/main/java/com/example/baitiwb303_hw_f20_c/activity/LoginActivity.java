@@ -9,7 +9,7 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.baitiwb303_hw_f20_c.Models.Account;
+import com.example.baitiwb303_hw_f20_c.Models.AccountM;
 import com.example.baitiwb303_hw_f20_c.R;
 import com.example.baitiwb303_hw_f20_c.database.DatabaseHelper;
 import com.google.android.material.textfield.TextInputLayout;
@@ -43,11 +43,11 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         databaseHelper = new DatabaseHelper(this);
-        username = (EditText) findViewById(R.id.username);
-        password = (EditText) findViewById(R.id.password);
-        login = (Button) findViewById(R.id.login);
-        emailError = (TextInputLayout) findViewById(R.id.emailError);
-        passError = (TextInputLayout) findViewById(R.id.passError);
+        username = findViewById(R.id.username);
+        password =  findViewById(R.id.password);
+        login =  findViewById(R.id.login);
+        emailError = findViewById(R.id.emailError);
+        passError =  findViewById(R.id.passError);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,18 +86,18 @@ public class LoginActivity extends AppCompatActivity {
                     Intent intent = new Intent(this, MainActivity.class);
                     JSONObject json_data_sign_in;
                     json_data_sign_in = Response_SignIn.getJSONObject(0);
-                    Account account = new Account();
-                    account.setAccount_id(json_data_sign_in.getString(Column_Account_ID));
-                    account.setFirst_name(json_data_sign_in.getString(Column_Account_First_Name));
-                    account.setLast_name(json_data_sign_in.getString(Column_Account_Last_Name));
-                    account.setUser_name(json_data_sign_in.getString(Column_Account_User_Name));
-                    account.setPassword(json_data_sign_in.getString(Column_Account_Password));
-                    account.setReg_Year(json_data_sign_in.getString(Column_Account_Reg_Yeer));
-                    account.setGender(json_data_sign_in.getString(Column_Account_Gender));
-                    account.setAddress(json_data_sign_in.getString(Column_Account_Address));
-                    account.setMobile_No(json_data_sign_in.getString(Column_Account_Mobile));
-                    account.setPrivilege(json_data_sign_in.getString(Column_Account_Privilege));
-                    intent.putExtra("LOGIN_INFO", account);
+                    AccountM accountM = new AccountM();
+                    accountM.setAccount_id(json_data_sign_in.getString(Column_Account_ID));
+                    accountM.setFirst_name(json_data_sign_in.getString(Column_Account_First_Name));
+                    accountM.setLast_name(json_data_sign_in.getString(Column_Account_Last_Name));
+                    accountM.setUser_name(json_data_sign_in.getString(Column_Account_User_Name));
+                    accountM.setPassword(json_data_sign_in.getString(Column_Account_Password));
+                    accountM.setReg_Year(json_data_sign_in.getString(Column_Account_Reg_Yeer));
+                    accountM.setGender(json_data_sign_in.getString(Column_Account_Gender));
+                    accountM.setAddress(json_data_sign_in.getString(Column_Account_Address));
+                    accountM.setMobile_No(json_data_sign_in.getString(Column_Account_Mobile));
+                    accountM.setPrivilege(json_data_sign_in.getString(Column_Account_Privilege));
+                    intent.putExtra("LOGIN_INFO", accountM);
                     this.finish();
                     startActivity(intent);
                 } catch (JSONException e) {

@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.Menu;
 import android.widget.TextView;
 
-import com.example.baitiwb303_hw_f20_c.Models.Account;
+import com.example.baitiwb303_hw_f20_c.Models.AccountM;
 import com.example.baitiwb303_hw_f20_c.R;
 import com.example.baitiwb303_hw_f20_c.activity.ui.SettingActivity;
 import com.example.baitiwb303_hw_f20_c.activity.ui.course.CreateCourseActivity;
@@ -96,13 +96,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         Intent intent = getIntent();
-        Account account = (Account) intent.getSerializableExtra("LOGIN_INFO");
+        AccountM accountM = (AccountM) intent.getSerializableExtra("LOGIN_INFO");
         View hView = navigationView.getHeaderView(0);
         TextView nav_full_name = (TextView) hView.findViewById(R.id.nav_bar_full_name);
         TextView nav_user_name = (TextView) hView.findViewById(R.id.nav_bar_username);
-        String full_name = account.getFirst_name() + " " + account.getLast_name();
+        String full_name = accountM.getFirst_name() + " " + accountM.getLast_name();
         nav_full_name.setText(full_name);
-        nav_user_name.setText(account.getUser_name());
+        nav_user_name.setText(accountM.getUser_name());
     }
 
     @Override
