@@ -22,6 +22,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String TABLE_Account = "account";
     public static final String TABLE_COURSE = "course";
     public static final String TABLE_Section = "section";
+    public static final String TABLE_SectionsWithInstructorAndCourses = "sectionsWithInstructorAndCourses";
     public static final String TABLE_Instructor = "instructor";
     public static final String TABLE_Enrollment = "enrollment";
 
@@ -59,6 +60,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String Column_Section_No = "section_section_no";
     public static final String Column_Section_Room_No = "section_room_no";
     public static final String Column_Section_Time = "section_time";
+
+
+    // TABLE  Sections With Student And Courses
+    public static final String Column_Sections_With_Instructor_And_Courses = "sctions_with_instructor_and_courses";
+
 
     // TABLE Enrollment
     public static final String Column_Enrollment_ID = "enrollment_id";
@@ -98,11 +104,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     // Create TABLE Sections
     String Create_TABLE_Sections = "CREATE TABLE " + TABLE_Section + " (" + Column_Section_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            Column_Course_ID + " INTEGER," +
-            Column_Instructor_ID + " INTEGER," +
+
             Column_Section_No + " TEXT," +
             Column_Section_Room_No + " TEXT," +
             Column_Section_Time + " TEXT" +
+            ")";
+
+
+    // Create TABLE Sections With Student And Courses
+    String Create_TABLE_SectionsWithInstructorAndCourses = "CREATE TABLE " + TABLE_SectionsWithInstructorAndCourses + " (" + Column_Sections_With_Instructor_And_Courses + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            Column_Course_ID + " INTEGER," +
+            Column_Instructor_ID + " INTEGER," +
+            Column_Section_ID + " INTEGER" +
             ")";
 
 
@@ -153,7 +166,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public JSONArray getSectionByName(String Table_Name) {
 
         SQLiteDatabase db = this.getWritableDatabase();
-        String searchQuery = "select * from " + Table_Name +" group by "+Column_Section_No;
+        String searchQuery = "select * from " + Table_Name + " group by " + Column_Section_No;
         Cursor cursor = db.rawQuery(searchQuery, null);
         JSONArray resultSet = new JSONArray();
         cursor.moveToFirst();
@@ -272,7 +285,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             contentValues.put(Column_Account_Mobile, data.getMobile_No());
             contentValues.put(Column_Account_Privilege, data.getPrivilege());
 
-            result = db.update(TABLE_Account,  contentValues,Column_Account_ID+"=?", new String[]{data.getAccount_id()});
+            result = db.update(TABLE_Account, contentValues, Column_Account_ID + "=?", new String[]{data.getAccount_id()});
 
             if (result == -1) {
                 db.close();
@@ -327,7 +340,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             contentValues.put(Column_Course_Tittle, data.getCourse_tittle());
             contentValues.put(Column_Course_Hours, data.getCourse_hours());
 
-            result = db.update(TABLE_COURSE,  contentValues,Column_Course_ID+"=?", new String[]{data.getCourse_id()});
+            result = db.update(TABLE_COURSE, contentValues, Column_Course_ID + "=?", new String[]{data.getCourse_id()});
 
             if (result == -1) {
                 db.close();
@@ -388,7 +401,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             contentValues.put(Column_Instructor_Address, data.getInstructor_address());
             contentValues.put(Column_Instructor_Mobile, data.getInstructor_mobile());
 
-            result = db.update(TABLE_Instructor,  contentValues,Column_Instructor_ID+"=?", new String[]{data.getInstructor_id()});
+            result = db.update(TABLE_Instructor, contentValues, Column_Instructor_ID + "=?", new String[]{data.getInstructor_id()});
 
 
             if (result == -1) {
@@ -450,7 +463,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             contentValues.put(Column_Section_Time, data.getSection_time());
             contentValues.put(Column_Section_No, data.getSection_section_no());
 
-            result = db.update(TABLE_Section,  contentValues,Column_Section_ID+"=?", new String[]{data.getSection_id()});
+            result = db.update(TABLE_Section, contentValues, Column_Section_ID + "=?", new String[]{data.getSection_id()});
 
 
             if (result == -1) {
@@ -509,6 +522,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(Create_TABLE_Accounts);
         db.execSQL(Create_TABLE_Courses);
         db.execSQL(Create_TABLE_Sections);
+        db.execSQL(Create_TABLE_SectionsWithInstructorAndCourses);
         db.execSQL(Create_TABLE_Instructor);
         db.execSQL(Create_TABLE_Enrollment);
         ContentValues contentValues = new ContentValues();
@@ -565,7 +579,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public void DeleteRawInTable(String TABLE_NAME, String key, String ID) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_NAME, key+"=?", new String[]{ID});
+        db.delete(TABLE_NAME, key + "=?", new String[]{ID});
     }
 
 
