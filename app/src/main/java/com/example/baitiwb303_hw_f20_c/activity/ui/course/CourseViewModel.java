@@ -57,4 +57,12 @@ public class CourseViewModel extends AndroidViewModel {
     public boolean createCourse(CourseM courseM){
         return databaseHelper.CreateCourse(courseM) != null;
     }
+
+    public void updateCourse(CourseM data){
+        databaseHelper.updateCourse(data);
+    }
+
+    public void delete(String id){
+        databaseHelper.DeleteRawInTable("course",Column_Course_ID,id);
+    }
 }

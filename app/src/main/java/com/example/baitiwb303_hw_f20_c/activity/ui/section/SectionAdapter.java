@@ -38,7 +38,7 @@ public class SectionAdapter extends RecyclerView.Adapter<SectionAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.sectionNameView.setText(sectionList.get(position).getSection_room_no());
+        holder.sectionNameView.setText(sectionList.get(position).getSection_section_no());
     }
 
     @Override

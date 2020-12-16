@@ -75,4 +75,12 @@ public class DrViewModel extends AndroidViewModel {
         return databaseHelper.CreateInstructor(instructorM) != null;
     }
 
+    public void updateInstructor(InstructorM data){
+        databaseHelper.updateInstructor(data);
+    }
+
+    public void delete(String id){
+        databaseHelper.DeleteRawInTable("instructor",Column_Instructor_ID,id);
+    }
+
 }

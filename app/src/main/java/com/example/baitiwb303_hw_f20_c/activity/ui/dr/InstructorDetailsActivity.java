@@ -1,6 +1,7 @@
 package com.example.baitiwb303_hw_f20_c.activity.ui.dr;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,11 +15,14 @@ import com.example.baitiwb303_hw_f20_c.R;
 public class InstructorDetailsActivity extends AppCompatActivity {
     TextView details_instructor_firstname, details_instructor_lastname, details_instructor_mobile, details_instructor_gender, details_instructor_address;
     Button details_instructor_delete, details_instructor_edit;
+    private DrViewModel DrViewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_instructor_details);
-
+        DrViewModel =
+                new ViewModelProvider(this).get(DrViewModel.class);
         Intent intent = getIntent();
         InstructorM instructorM = (InstructorM) intent.getSerializableExtra("instructor_details");
         details_instructor_firstname = findViewById(R.id.details_instructor_firstname);
@@ -32,7 +36,8 @@ public class InstructorDetailsActivity extends AppCompatActivity {
         details_instructor_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                DrViewModel.delete(instructorM.getInstructor_id());
+                finish();
             }
         });
         details_instructor_edit.setOnClickListener(new View.OnClickListener() {

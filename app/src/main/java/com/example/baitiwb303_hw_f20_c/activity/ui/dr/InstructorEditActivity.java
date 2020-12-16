@@ -1,6 +1,7 @@
 package com.example.baitiwb303_hw_f20_c.activity.ui.dr;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,14 +19,16 @@ public class InstructorEditActivity extends AppCompatActivity {
     private EditText firstName, lastName, address, phoneNumber;
     private Button addInstructor;
     private Spinner spinner;
-    private DatabaseHelper databaseHelper;
+    private DrViewModel DrViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_instructor_edit);
-
-        databaseHelper = new DatabaseHelper(this);
+        DrViewModel =
+                new ViewModelProvider(this).get(DrViewModel.class);
+        Intent intent = getIntent();
+        InstructorM instructorM = (InstructorM) intent.getSerializableExtra("instructor_details");
         spinner = findViewById(R.id.edit_instructor_spinner);
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -42,19 +45,17 @@ public class InstructorEditActivity extends AppCompatActivity {
         addInstructor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                InstructorM instructorM = new InstructorM();
+                instructorM.setInstructor_id(instructorM.getInstructor_id());
                 instructorM.setInstructor_gender(spinner.getSelectedItem().toString());
                 instructorM.setInstructor_first_name(firstName.getText().toString());
                 instructorM.setInstructor_last_name(lastName.getText().toString());
                 instructorM.setInstructor_address(address.getText().toString());
                 instructorM.setInstructor_mobile(phoneNumber.getText().toString());
-
+                DrViewModel.updateInstructor(instructorM);
+                finish();
             }
         });
 
-
-        Intent intent = getIntent();
-        InstructorM instructorM = (InstructorM) intent.getSerializableExtra("instructor_details");
         firstName.setText(instructorM.getInstructor_first_name());
         lastName.setText(instructorM.getInstructor_last_name());
         phoneNumber.setText(instructorM.getInstructor_mobile());

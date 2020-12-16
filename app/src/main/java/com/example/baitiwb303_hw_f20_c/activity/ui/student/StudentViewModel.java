@@ -8,6 +8,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.baitiwb303_hw_f20_c.Models.AccountM;
+import com.example.baitiwb303_hw_f20_c.Models.SectionsM;
 import com.example.baitiwb303_hw_f20_c.database.DatabaseHelper;
 
 import org.json.JSONArray;
@@ -27,6 +28,7 @@ import static com.example.baitiwb303_hw_f20_c.database.DatabaseHelper.Column_Acc
 import static com.example.baitiwb303_hw_f20_c.database.DatabaseHelper.Column_Account_Privilege;
 import static com.example.baitiwb303_hw_f20_c.database.DatabaseHelper.Column_Account_Reg_Yeer;
 import static com.example.baitiwb303_hw_f20_c.database.DatabaseHelper.Column_Account_User_Name;
+import static com.example.baitiwb303_hw_f20_c.database.DatabaseHelper.Column_Section_ID;
 
 public class StudentViewModel extends AndroidViewModel {
 
@@ -71,5 +73,11 @@ public class StudentViewModel extends AndroidViewModel {
     public boolean createAccount(AccountM accountM){
         return databaseHelper.SignUp(accountM) != null;
     }
+    public void updateAccount(AccountM data){
+        databaseHelper.updateAccount(data);
+    }
 
+    public void delete(String id){
+        databaseHelper.DeleteRawInTable("account",Column_Account_ID,id);
+    }
 }

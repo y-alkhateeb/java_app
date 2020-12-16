@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,11 +14,8 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.baitiwb303_hw_f20_c.Models.AccountM;
 import com.example.baitiwb303_hw_f20_c.Models.CourseM;
 import com.example.baitiwb303_hw_f20_c.R;
-import com.example.baitiwb303_hw_f20_c.activity.ui.student.StudentAdapter;
-import com.example.baitiwb303_hw_f20_c.activity.ui.student.StudentViewModel;
 
 import java.util.List;
 

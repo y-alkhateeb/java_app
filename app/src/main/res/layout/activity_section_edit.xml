@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,75 +11,68 @@
         android:layout_margin="15dp"
         android:orientation="vertical">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/emailError"
+
+        <EditText
+            android:id="@+id/edit_section_no"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="10dp"
+            android:hint="@string/prompt_section_number"
+            android:inputType="text"
+            android:maxLines="1"
+            android:paddingStart="5dp"
+            android:paddingLeft="5dp"
+            android:singleLine="true" />
 
-            <EditText
-                android:id="@+id/edit_room_no"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:hint="@string/section_name"
-                android:inputType="text"
-                android:maxLines="1"
-                android:paddingStart="5dp"
-                android:paddingLeft="5dp"
-                android:singleLine="true" />
 
-        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/first_nameError"
+        <EditText
+            android:id="@+id/edit_section_room"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="10dp"
+            android:hint="@string/prompt_section_room"
+            android:inputType="text"
+            android:maxLines="1"
+            android:paddingStart="5dp"
+            android:paddingLeft="5dp"
+            android:singleLine="true" />
 
-            <EditText
-                android:id="@+id/edit_time"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:hint="@string/prompt_time"
-                android:inputType="text"
-                android:maxLines="1"
-                android:paddingStart="5dp"
-                android:paddingLeft="5dp"
-                android:singleLine="true" />
 
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/first_section_number"
+        <EditText
+            android:id="@+id/edit_section_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="10dp"
+            android:hint="@string/prompt_time"
+            android:inputType="text"
+            android:maxLines="1"
+            android:paddingStart="5dp"
+            android:paddingLeft="5dp"
+            android:singleLine="true" />
 
-            <EditText
-                android:id="@+id/edit_section_number"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:hint="@string/prompt_section_number"
-                android:inputType="text"
-                android:maxLines="1"
-                android:paddingStart="5dp"
-                android:paddingLeft="5dp"
-                android:singleLine="true" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingVertical="8dp"
+            android:text="@string/prompt_section_course">
+        </TextView>
         <Spinner
-            android:id="@+id/edit_spinner_course"
+            android:id="@+id/edit_section_course_spinner"
             android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp" />
+            android:paddingVertical="8dp"
+            android:text="@string/prompt_section_instructor">
+        </TextView>
         <Spinner
-            android:id="@+id/edit_spinner_instructor"
+            android:id="@+id/edit_section_instructor_spinner"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
             android:layout_marginTop="10dp" />
 
         <LinearLayout

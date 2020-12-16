@@ -1,6 +1,7 @@
 package com.example.baitiwb303_hw_f20_c.activity.ui.student;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,12 +20,17 @@ public class StudentEditActivity extends AppCompatActivity {
     private Button addStudent;
     private Spinner spinner;
     private DatabaseHelper databaseHelper;
+    private StudentViewModel studentViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_edit);
+        studentViewModel =
+                new ViewModelProvider(this).get(StudentViewModel.class);
         databaseHelper = new DatabaseHelper(this);
+        Intent intent = getIntent();
+        AccountM accountM = (AccountM) intent.getSerializableExtra("student_details");
         spinner = findViewById(R.id.edit_spinner);
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -43,7 +49,7 @@ public class StudentEditActivity extends AppCompatActivity {
         addStudent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AccountM accountM = new AccountM();
+                accountM.setAccount_id(accountM.getAccount_id());
                 accountM.setUser_name(username.getText().toString());
                 accountM.setPassword(password.getText().toString());
                 accountM.setGender(spinner.getSelectedItem().toString());
@@ -51,13 +57,13 @@ public class StudentEditActivity extends AppCompatActivity {
                 accountM.setLast_name(lastName.getText().toString());
                 accountM.setAddress(address.getText().toString());
                 accountM.setMobile_No(phoneNumber.getText().toString());
-
+                studentViewModel.updateAccount(accountM);
+                finish();
             }
         });
 
 
-        Intent intent = getIntent();
-        AccountM accountM = (AccountM) intent.getSerializableExtra("student_details");
+
         username.setText(accountM.getUser_name());
         firstName.setText(accountM.getFirst_name());
         lastName.setText(accountM.getLast_name());

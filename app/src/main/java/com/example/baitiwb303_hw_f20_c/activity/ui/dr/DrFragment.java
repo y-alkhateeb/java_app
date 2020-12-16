@@ -15,13 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.example.baitiwb303_hw_f20_c.Models.InstructorM;
 import com.example.baitiwb303_hw_f20_c.R;
-import com.example.baitiwb303_hw_f20_c.activity.ui.course.CourseViewModel;
-import com.example.baitiwb303_hw_f20_c.activity.ui.student.StudentAdapter;
-import com.example.baitiwb303_hw_f20_c.activity.ui.student.StudentViewModel;
 
 import java.util.List;
 

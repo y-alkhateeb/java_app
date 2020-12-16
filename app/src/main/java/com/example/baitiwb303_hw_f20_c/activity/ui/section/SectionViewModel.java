@@ -74,4 +74,12 @@ public class SectionViewModel extends AndroidViewModel {
     public boolean createSection(SectionsM sectionsM){
         return  databaseHelper.CreateSection(sectionsM) != null;
     }
+
+    public void updateSection(SectionsM sectionsM){
+        databaseHelper.updateSection(sectionsM);
+    }
+
+    public void delete(String id){
+        databaseHelper.DeleteRawInTable("section",Column_Section_ID,id);
+    }
 }
