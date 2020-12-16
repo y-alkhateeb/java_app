@@ -15,6 +15,8 @@ import com.example.baitiwb303_hw_f20_c.activity.ui.student.StudentViewModel;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.Objects;
+
 public class CreateCourseActivity extends AppCompatActivity {
     private EditText course_title, course_hours;
     private Button addCourse;
@@ -26,7 +28,6 @@ public class CreateCourseActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create_course);
 
         setContentView(R.layout.activity_create_course);
-        ((AppCompatActivity) this).getSupportActionBar().setTitle("Add New Course");
         courseViewModel =
                 new ViewModelProvider(this).get(CourseViewModel.class);
 

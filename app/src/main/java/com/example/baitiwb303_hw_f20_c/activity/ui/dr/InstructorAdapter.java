@@ -1,4 +1,4 @@
-package com.example.baitiwb303_hw_f20_c.activity.ui.student;
+package com.example.baitiwb303_hw_f20_c.activity.ui.dr;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,19 +10,20 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.baitiwb303_hw_f20_c.Models.AccountM;
+import com.example.baitiwb303_hw_f20_c.Models.InstructorM;
 import com.example.baitiwb303_hw_f20_c.R;
 
 import java.util.List;
 
-public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHolder> {
-    private List<AccountM> studentList;
+
+public class InstructorAdapter  extends RecyclerView.Adapter<InstructorAdapter.MyViewHolder>{
+    private List<InstructorM> instructorList;
 
     public Context context;
 
 
-    public StudentAdapter(Context context, List<AccountM> studentList) {
-        this.studentList = studentList;
+    public InstructorAdapter(Context context, List<InstructorM> instructorList) {
+        this.instructorList = instructorList;
         this.context = context;
     }
 
@@ -31,38 +32,37 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.MyViewHo
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_student, parent, false);
+                .inflate(R.layout.item_dr, parent, false);
         return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        String full_name = studentList.get(position).getFirst_name() +"  " +
-                studentList.get(position).getLast_name();
-        holder.studentNameView.setText(full_name);
+        String full_name = instructorList.get(position).getInstructor_first_name() +"  " +
+                instructorList.get(position).getInstructor_last_name();
+        holder.instructorNameView.setText(full_name);
     }
 
     @Override
     public int getItemCount() {
-        return studentList.size();
+        return instructorList.size();
     }
 
 
     class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView studentNameView;
+        TextView instructorNameView;
 
         MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            studentNameView = itemView.findViewById(R.id.student_name);
+            instructorNameView = itemView.findViewById(R.id.instructor_name);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(context,StudentDetailsActivity.class);
-                    intent.putExtra("student_details",studentList.get(getAdapterPosition()));
+                    Intent intent = new Intent(context, InstructorDetailsActivity.class);
+                    intent.putExtra("instructor_details",instructorList.get(getAdapterPosition()));
                     context.startActivity(intent);
                 }
             });
         }
     }
 }
-

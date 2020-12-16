@@ -36,7 +36,7 @@ public class CourseDetailsActivity extends AppCompatActivity {
         details_course_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent editIntent = new Intent(view.getContext(), StudentEditActivity.class);
+                Intent editIntent = new Intent(view.getContext(), CourseEditActivity.class);
                 editIntent.putExtra("course_details", courseM);
                 startActivity(editIntent);
             }

@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.ui.course.CourseEditActivity">
-
+    tools:context=".activity.ui.dr.InstructorEditActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,12 +12,27 @@
         android:layout_margin="15dp"
         android:orientation="vertical">
 
+
         <EditText
-            android:id="@+id/edit_course_title"
+            android:id="@+id/edit_instructor_first_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:hint="@string/course_title"
+            android:hint="@string/prompt_first_name"
+            android:inputType="text"
+            android:maxLines="1"
+            android:paddingStart="5dp"
+            android:paddingLeft="5dp"
+            android:singleLine="true" />
+
+
+
+        <EditText
+            android:id="@+id/edit_instructor_last_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="@string/prompt_last_name"
             android:inputType="text"
             android:maxLines="1"
             android:paddingStart="5dp"
@@ -27,16 +41,38 @@
 
 
         <EditText
-            android:id="@+id/edit_course_hours"
+            android:id="@+id/edit_instructor_phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:hint="@string/course_hours"
+            android:hint="@string/prompt_phone"
+            android:inputType="text"
+            android:maxLines="1"
+            android:paddingStart="5dp"
+            android:paddingLeft="5dp"
+            android:singleLine="true"
+            tools:ignore="TextFields" />
+
+
+        <EditText
+            android:id="@+id/edit_instructor_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="@string/prompt_address"
             android:inputType="text"
             android:maxLines="1"
             android:paddingStart="5dp"
             android:paddingLeft="5dp"
             android:singleLine="true" />
+
+
+        <Spinner
+            android:id="@+id/edit_instructor_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp" />
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -44,7 +80,7 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/edit_save_change_course"
+                android:id="@+id/edit_save_change_instructor"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_margin="20dp"

@@ -35,15 +35,22 @@
 
     <string name="section_name">Section Name</string>
     <string name="prompt_section_number">Section Number</string>
+    <string name="prompt_section_room">Section Room</string>
     <string name="prompt_time">Time</string>
+    <string name="add_section">Add Section</string>
+    <string name="prompt_section_course">Please select a course</string>
+    <string name="prompt_section_instructor">Please select an instructor</string>
 
 
+    <string name="course_name">Course Name:</string>
     <string name="course_title">Course Title</string>
     <string name="course_hours">Hours</string>
     <string name="add_course">Add Course</string>
-
-
     <string name="prompt_course">Course</string>
+
+
+    <string name="instructor_name">Instructor Name: </string>
+    <string name="add_instructor">Add Instructor</string>
 
 
     <string name="prompt_delete">Delete</string>

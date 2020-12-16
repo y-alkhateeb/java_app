@@ -28,6 +28,12 @@ import static com.example.baitiwb303_hw_f20_c.database.DatabaseHelper.Column_Acc
 import static com.example.baitiwb303_hw_f20_c.database.DatabaseHelper.Column_Account_Privilege;
 import static com.example.baitiwb303_hw_f20_c.database.DatabaseHelper.Column_Account_Reg_Yeer;
 import static com.example.baitiwb303_hw_f20_c.database.DatabaseHelper.Column_Account_User_Name;
+import static com.example.baitiwb303_hw_f20_c.database.DatabaseHelper.Column_Course_ID;
+import static com.example.baitiwb303_hw_f20_c.database.DatabaseHelper.Column_Instructor_ID;
+import static com.example.baitiwb303_hw_f20_c.database.DatabaseHelper.Column_Section_ID;
+import static com.example.baitiwb303_hw_f20_c.database.DatabaseHelper.Column_Section_No;
+import static com.example.baitiwb303_hw_f20_c.database.DatabaseHelper.Column_Section_Room_No;
+import static com.example.baitiwb303_hw_f20_c.database.DatabaseHelper.Column_Section_Time;
 
 public class SectionViewModel extends AndroidViewModel {
 
@@ -46,8 +52,12 @@ public class SectionViewModel extends AndroidViewModel {
             for (int i = 0; i < jsonArray.length(); i++) {
                 try {
                     SectionsM sectionsM = new SectionsM();
-                    sectionsM.setSection_room_no(jsonArray.getJSONObject(i).getString(Column_Account_ID));
-                    sectionsM.setSection_time(jsonArray.getJSONObject(i).getString(Column_Account_First_Name));
+                    sectionsM.setSection_id(jsonArray.getJSONObject(i).getString(Column_Section_ID));
+                    sectionsM.setCourse_id(jsonArray.getJSONObject(i).getString(Column_Course_ID));
+                    sectionsM.setInstructor_id(jsonArray.getJSONObject(i).getString(Column_Instructor_ID));
+                    sectionsM.setSection_room_no(jsonArray.getJSONObject(i).getString(Column_Section_Room_No));
+                    sectionsM.setSection_time(jsonArray.getJSONObject(i).getString(Column_Section_Time));
+                    sectionsM.setSection_section_no(jsonArray.getJSONObject(i).getString(Column_Section_No));
                     sectionsMList.add(sectionsM);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -61,7 +71,7 @@ public class SectionViewModel extends AndroidViewModel {
         return mAllSection;
     }
 
-//    public boolean createSection(SectionsM sectionsM){
-//        return databaseHelper.creaSection(sectionsM) != null;
-//    }
+    public boolean createSection(SectionsM sectionsM){
+        return  databaseHelper.CreateSection(sectionsM) != null;
+    }
 }

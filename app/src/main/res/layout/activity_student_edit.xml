@@ -14,11 +14,6 @@
         android:layout_margin="15dp"
         android:orientation="vertical">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/emailError"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp">
 
             <EditText
                 android:id="@+id/edit_username"
@@ -32,13 +27,7 @@
                 android:paddingLeft="5dp"
                 android:singleLine="true" />
 
-        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/first_nameError"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp">
 
             <EditText
                 android:id="@+id/edit_first_name"
@@ -52,13 +41,7 @@
                 android:paddingLeft="5dp"
                 android:singleLine="true" />
 
-        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/last_nameError"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp">
 
             <EditText
                 android:id="@+id/edit_last_name"
@@ -72,13 +55,6 @@
                 android:paddingLeft="5dp"
                 android:singleLine="true" />
 
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/phoneError"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp">
 
             <EditText
                 android:id="@+id/edit_phone"
@@ -93,13 +69,6 @@
                 android:singleLine="true"
                 tools:ignore="TextFields" />
 
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/addressError"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp">
 
             <EditText
                 android:id="@+id/edit_address"
@@ -113,7 +82,6 @@
                 android:paddingLeft="5dp"
                 android:singleLine="true" />
 
-        </com.google.android.material.textfield.TextInputLayout>
 
         <Spinner
             android:id="@+id/edit_spinner"
@@ -121,12 +89,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/passError"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            app:passwordToggleEnabled="true">
 
             <EditText
                 android:id="@+id/edit_password"
@@ -140,7 +102,6 @@
                 android:paddingLeft="5dp"
                 android:singleLine="true" />
 
-        </com.google.android.material.textfield.TextInputLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -148,7 +109,7 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/edit_save_change"
+                android:id="@+id/edit_save_change_student"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_margin="20dp"

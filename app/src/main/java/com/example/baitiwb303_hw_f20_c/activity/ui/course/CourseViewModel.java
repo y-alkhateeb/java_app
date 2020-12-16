@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.baitiwb303_hw_f20_c.database.DatabaseHelper.Column_Course_Hours;
+import static com.example.baitiwb303_hw_f20_c.database.DatabaseHelper.Column_Course_ID;
 import static com.example.baitiwb303_hw_f20_c.database.DatabaseHelper.Column_Course_Tittle;
 
 
@@ -37,6 +38,7 @@ public class CourseViewModel extends AndroidViewModel {
             for (int i = 0; i < jsonArray.length(); i++) {
                 try {
                     CourseM courseM = new CourseM();
+                    courseM.setCourse_id(jsonArray.getJSONObject(i).getString(Column_Course_ID));
                     courseM.setCourse_tittle(jsonArray.getJSONObject(i).getString(Column_Course_Tittle));
                     courseM.setCourse_hours(jsonArray.getJSONObject(i).getString(Column_Course_Hours));
                     courseMList.add(courseM);

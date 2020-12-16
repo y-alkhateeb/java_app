@@ -39,7 +39,7 @@ public class StudentEditActivity extends AppCompatActivity {
         lastName = findViewById(R.id.edit_last_name);
         phoneNumber = findViewById(R.id.edit_phone);
         address = findViewById(R.id.edit_address);
-        addStudent = findViewById(R.id.edit_account);
+        addStudent = findViewById(R.id.edit_save_change_student);
         addStudent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

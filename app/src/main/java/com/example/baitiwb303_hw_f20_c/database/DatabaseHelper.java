@@ -350,7 +350,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return resultSet;
     }
 
-
     public AccountM SignUp(AccountM data) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -395,6 +394,68 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             contentValues.put(Column_Course_Hours, data.getCourse_hours());
 
             result = db.insert(TABLE_COURSE, null, contentValues);
+
+
+            if (result == -1) {
+                db.close();
+                Log.i("InsertIntoAccount", "InsertIntoAccount: false");
+                return null;
+            } else {
+                db.close();
+                Log.i("InsertIntoAccount", "InsertIntoAccount: true");
+                return data;
+            }
+        } catch (Exception e) {
+            Log.i("InsertIntoAccount", "Exception : " + e.getMessage());
+            return null;
+        }
+
+
+    }
+
+    public InstructorM CreateInstructor(InstructorM data) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        try {
+            long result = -1;
+            contentValues.put(Column_Instructor_First_Name, data.getInstructor_first_name());
+            contentValues.put(Column_Instructor_Last_Name, data.getInstructor_last_name());
+            contentValues.put(Column_Instructor_Gender, data.getInstructor_gender());
+            contentValues.put(Column_Instructor_Address, data.getInstructor_address());
+            contentValues.put(Column_Instructor_Mobile, data.getInstructor_mobile());
+
+            result = db.insert(TABLE_Instructor, null, contentValues);
+
+
+            if (result == -1) {
+                db.close();
+                Log.i("InsertIntoAccount", "InsertIntoAccount: false");
+                return null;
+            } else {
+                db.close();
+                Log.i("InsertIntoAccount", "InsertIntoAccount: true");
+                return data;
+            }
+        } catch (Exception e) {
+            Log.i("InsertIntoAccount", "Exception : " + e.getMessage());
+            return null;
+        }
+
+
+    }
+
+    public SectionsM CreateSection(SectionsM data) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        try {
+            long result = -1;
+            contentValues.put(Column_Course_ID, data.getCourse_id());
+            contentValues.put(Column_Instructor_ID, data.getInstructor_id());
+            contentValues.put(Column_Section_Room_No, data.getSection_room_no());
+            contentValues.put(Column_Section_Time, data.getSection_time());
+            contentValues.put(Column_Section_No, data.getSection_section_no());
+
+            result = db.insert(TABLE_Section, null, contentValues);
 
 
             if (result == -1) {

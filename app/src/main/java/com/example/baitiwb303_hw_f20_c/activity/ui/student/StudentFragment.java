@@ -36,7 +36,12 @@ public class StudentFragment extends Fragment {
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         studentRecycleView.setLayoutManager(mLayoutManager);
         studentRecycleView.setItemAnimator(new DefaultItemAnimator());
+        return root;
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
         studentViewModel.getAccount().observe(getViewLifecycleOwner(), new Observer<List<AccountM>>() {
             @Override
             public void onChanged(@Nullable List<AccountM> s) {
@@ -44,6 +49,5 @@ public class StudentFragment extends Fragment {
                 studentRecycleView.setAdapter(studentAdapter);
             }
         });
-        return root;
     }
 }

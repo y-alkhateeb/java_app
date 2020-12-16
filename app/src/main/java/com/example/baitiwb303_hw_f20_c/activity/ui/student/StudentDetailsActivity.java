@@ -45,7 +45,6 @@ public class StudentDetailsActivity extends AppCompatActivity {
             }
         });
 
-
         details_student_username.setText(accountM.getUser_name());
         details_student_firstname.setText(accountM.getFirst_name());
         details_student_lastname.setText(accountM.getLast_name());

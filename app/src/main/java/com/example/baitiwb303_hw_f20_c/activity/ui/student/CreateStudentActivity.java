@@ -15,6 +15,8 @@ import com.example.baitiwb303_hw_f20_c.R;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.Objects;
+
 public class CreateStudentActivity extends AppCompatActivity {
     private EditText username, password, firstName, lastName, address, phoneNumber;
     private Button addStudent;
@@ -24,7 +26,6 @@ public class CreateStudentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_student);
-        ((AppCompatActivity) this).getSupportActionBar().setTitle("Add New Student");
         studentViewModel =
                 new ViewModelProvider(this).get(StudentViewModel.class);
         spinner = findViewById(R.id.create_spinner);
