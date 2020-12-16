@@ -102,8 +102,8 @@
                 android:id="@+id/details_section_delete"
                 android:layout_width="175dp"
                 android:layout_height="50dp"
-                android:textColor="@color/white"
-                android:background="@color/red"
+                android:textColor="?attr/colorWhite"
+                android:background="?attr/ColorRed"
                 android:layout_marginHorizontal="14dp"
                 android:text="@string/prompt_delete"/>
             <Button

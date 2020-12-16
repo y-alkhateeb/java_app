@@ -8,7 +8,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/FirstTheme">
         <activity android:name=".activity.ui.dr.InstructorEditActivity"></activity>
         <activity android:name=".activity.ui.dr.InstructorDetailsActivity" />
         <activity android:name=".activity.ui.course.CourseEditActivity" />
@@ -25,7 +25,7 @@
         <activity
             android:name=".activity.MainActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/FirstTheme" />
         <activity android:name=".activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

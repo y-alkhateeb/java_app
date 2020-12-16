@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- First Theme -->
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -12,4 +13,20 @@
     <color name="colorPrimaryDark">#76a5df</color>
     <color name="colorAccent">#ffff8800</color>
     <color name="zircon">#e0e6e4</color>
+
+
+    <!-- Second Theme -->
+    <color name="s_purple_200">#20162C</color>
+    <color name="s_purple_500">#1A013C</color>
+    <color name="s_purple_700">#170D2E</color>
+    <color name="s_teal_200">#0384DA</color>
+    <color name="s_teal_700">#018768</color>
+    <color name="s_black">#FF000000</color>
+    <color name="s_red">#EA5959</color>
+    <color name="s_white">#D1CCCC</color>
+    <color name="s_colorPrimary">#5A9DEF</color>
+    <color name="s_colorPrimaryDark">#6198EA</color>
+    <color name="s_colorAccent">#FF4800</color>
+    <color name="s_zircon">#B5D5CA</color>
+
 </resources>

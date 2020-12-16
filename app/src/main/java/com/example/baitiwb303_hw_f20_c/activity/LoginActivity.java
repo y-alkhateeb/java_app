@@ -1,6 +1,7 @@
 package com.example.baitiwb303_hw_f20_c.activity;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.baitiwb303_hw_f20_c.Models.AccountM;
 import com.example.baitiwb303_hw_f20_c.R;
+import com.example.baitiwb303_hw_f20_c.Tools.SettingsPref;
 import com.example.baitiwb303_hw_f20_c.database.DatabaseHelper;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -40,6 +42,11 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        int Theme = SettingsPref.getTheme(this);
+        if(Theme != 0)
+        {
+            setTheme(Theme);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         databaseHelper = new DatabaseHelper(this);

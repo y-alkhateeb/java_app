@@ -49,7 +49,7 @@
                 android:layout_margin="20dp"
                 android:background="@drawable/button_gradient"
                 android:text="@string/add_course"
-                android:textColor="@android:color/white"
+                android:textColor="?attr/colorWhite"
                 android:textSize="16sp" />
 
         </LinearLayout>
