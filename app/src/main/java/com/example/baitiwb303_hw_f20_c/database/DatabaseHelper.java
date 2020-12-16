@@ -150,6 +150,41 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return resultSet;
     }
 
+    public JSONArray getSectionByName(String Table_Name) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        String searchQuery = "select * from " + Table_Name +" group by "+Column_Section_No;
+        Cursor cursor = db.rawQuery(searchQuery, null);
+        JSONArray resultSet = new JSONArray();
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+
+            int totalColumn = cursor.getColumnCount();
+            JSONObject rowObject = new JSONObject();
+
+            for (int i = 0; i < totalColumn; i++) {
+                if (cursor.getColumnName(i) != null) {
+                    try {
+                        if (cursor.getString(i) != null) {
+                            rowObject.put(cursor.getColumnName(i), cursor.getString(i));
+                        } else {
+                            rowObject.put(cursor.getColumnName(i), "");
+                        }
+                    } catch (Exception e) {
+                        return null;
+                    }
+                }
+            }
+            resultSet.put(rowObject);
+            cursor.moveToNext();
+        }
+
+
+        cursor.close();
+        db.close();
+        return resultSet;
+    }
+
     public JSONArray SignIn(String UserName, String Password) {
 
         SQLiteDatabase db = this.getWritableDatabase();
