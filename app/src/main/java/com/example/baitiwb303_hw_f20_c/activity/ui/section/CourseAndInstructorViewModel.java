@@ -1,4 +1,4 @@
-package com.example.baitiwb303_hw_f20_c.activity.ui.SectionStd;
+package com.example.baitiwb303_hw_f20_c.activity.ui.section;
 
 import android.app.Application;
 
@@ -22,19 +22,23 @@ import static com.example.baitiwb303_hw_f20_c.database.DatabaseHelper.Column_Sec
 import static com.example.baitiwb303_hw_f20_c.database.DatabaseHelper.Column_Section_No;
 import static com.example.baitiwb303_hw_f20_c.database.DatabaseHelper.Column_Section_Room_No;
 import static com.example.baitiwb303_hw_f20_c.database.DatabaseHelper.Column_Section_Time;
+import static com.example.baitiwb303_hw_f20_c.database.DatabaseHelper.Column_Sections_With_Instructor_And_Courses;
 
-public class SectionStdViewModel extends AndroidViewModel {
-    private final MutableLiveData<List<SectionsM>> mAllSection;
-    private  final List<SectionsM> sectionsMList;
+public class CourseAndInstructorViewModel extends AndroidViewModel {
+    private final MutableLiveData<List<SectionsM>> mAllCourseAndInstructor;
+    private final List<SectionsM> courseAndInstructorMList;
     private final DatabaseHelper databaseHelper;
-    private final JSONArray jsonArray;
 
-    public SectionStdViewModel(@NonNull Application application) {
+    public CourseAndInstructorViewModel(@NonNull Application application) {
         super(application);
-        mAllSection = new MutableLiveData<>();
-        sectionsMList = new ArrayList<>();
+        mAllCourseAndInstructor = new MutableLiveData<>();
+        courseAndInstructorMList = new ArrayList<>();
         databaseHelper = new DatabaseHelper(application.getApplicationContext());
-        jsonArray = databaseHelper.getSectionByName("section");
+    }
+
+
+    public LiveData<List<SectionsM>> getCourseAndInstructor(String id) {
+        JSONArray jsonArray = databaseHelper.get_all_course_instructor_by_id("sectionsWithInstructorAndCourses",id);
         if (jsonArray.length() > 0) {
             for (int i = 0; i < jsonArray.length(); i++) {
                 try {
@@ -42,20 +46,18 @@ public class SectionStdViewModel extends AndroidViewModel {
                     sectionsM.setSection_id(jsonArray.getJSONObject(i).getString(Column_Section_ID));
                     sectionsM.setCourse_id(jsonArray.getJSONObject(i).getString(Column_Course_ID));
                     sectionsM.setInstructor_id(jsonArray.getJSONObject(i).getString(Column_Instructor_ID));
-                    sectionsM.setSection_room_no(jsonArray.getJSONObject(i).getString(Column_Section_Room_No));
-                    sectionsM.setSection_time(jsonArray.getJSONObject(i).getString(Column_Section_Time));
-                    sectionsM.setSection_section_no(jsonArray.getJSONObject(i).getString(Column_Section_No));
-                    sectionsMList.add(sectionsM);
+                    courseAndInstructorMList.add(sectionsM);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
-            mAllSection.setValue(sectionsMList);
+            mAllCourseAndInstructor.setValue(courseAndInstructorMList);
         }
+        return mAllCourseAndInstructor;
     }
 
-    public LiveData<List<SectionsM>> getSection() {
-        return mAllSection;
-    }
 
+    public void delete(String id){
+        databaseHelper.DeleteRawInTable("sectionsWithInstructorAndCourses",Column_Sections_With_Instructor_And_Courses,id);
+    }
 }

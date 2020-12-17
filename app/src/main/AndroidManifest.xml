@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/FirstTheme">
-        <activity android:name=".activity.ui.dr.InstructorEditActivity"></activity>
+        <activity android:name=".activity.ui.enrollment.EnrollmentDetailsActivity"></activity>
+        <activity android:name=".activity.ui.section.CourseInstructorDetailsActivity" />
+        <activity android:name=".activity.ui.section.AddInstructorAndCoursesToSectionActivity" />
+        <activity android:name=".activity.ui.dr.InstructorEditActivity" />
         <activity android:name=".activity.ui.dr.InstructorDetailsActivity" />
         <activity android:name=".activity.ui.course.CourseEditActivity" />
         <activity android:name=".activity.ui.course.CourseDetailsActivity" />

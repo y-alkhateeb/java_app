@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_section, R.id.nav_student, R.id.nav_course, R.id.nav_dr)
+                R.id.nav_section, R.id.nav_student, R.id.nav_course, R.id.nav_dr, R.id.nav_enrollment)
                 .setDrawerLayout(drawer)
                 .build();
 
@@ -84,22 +84,30 @@ public class MainActivity extends AppCompatActivity {
         navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
             if(destination.getId() == R.id.nav_section){
                 currentFragment = 0;
+                fab.setVisibility(View.VISIBLE);
             }
             else if(destination.getId() == R.id.nav_student){
                 currentFragment = 1;
+                fab.setVisibility(View.VISIBLE);
             }
             else if(destination.getId() == R.id.nav_course){
                 currentFragment = 2;
+                fab.setVisibility(View.VISIBLE);
             }
             else if(destination.getId() == R.id.nav_dr){
                 currentFragment = 3;
+                fab.setVisibility(View.VISIBLE);
+            }
+            else if(destination.getId() == R.id.nav_enrollment){
+                currentFragment = 4;
+                fab.setVisibility(View.GONE);
             }
         });
         Intent intent = getIntent();
         AccountM accountM = (AccountM) intent.getSerializableExtra("LOGIN_INFO");
         View hView = navigationView.getHeaderView(0);
-        TextView nav_full_name = (TextView) hView.findViewById(R.id.nav_bar_full_name);
-        TextView nav_user_name = (TextView) hView.findViewById(R.id.nav_bar_username);
+        TextView nav_full_name = hView.findViewById(R.id.nav_bar_full_name);
+        TextView nav_user_name = hView.findViewById(R.id.nav_bar_username);
         String full_name = accountM.getFirst_name() + " " + accountM.getLast_name();
         nav_full_name.setText(full_name);
         nav_user_name.setText(accountM.getUser_name());

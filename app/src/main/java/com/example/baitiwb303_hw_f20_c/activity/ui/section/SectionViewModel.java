@@ -53,8 +53,6 @@ public class SectionViewModel extends AndroidViewModel {
                 try {
                     SectionsM sectionsM = new SectionsM();
                     sectionsM.setSection_id(jsonArray.getJSONObject(i).getString(Column_Section_ID));
-                    sectionsM.setCourse_id(jsonArray.getJSONObject(i).getString(Column_Course_ID));
-                    sectionsM.setInstructor_id(jsonArray.getJSONObject(i).getString(Column_Instructor_ID));
                     sectionsM.setSection_room_no(jsonArray.getJSONObject(i).getString(Column_Section_Room_No));
                     sectionsM.setSection_time(jsonArray.getJSONObject(i).getString(Column_Section_Time));
                     sectionsM.setSection_section_no(jsonArray.getJSONObject(i).getString(Column_Section_No));
@@ -73,6 +71,9 @@ public class SectionViewModel extends AndroidViewModel {
 
     public boolean createSection(SectionsM sectionsM){
         return  databaseHelper.CreateSection(sectionsM) != null;
+    }
+    public boolean addCourseAndInstructorToSection(SectionsM sectionsM){
+        return  databaseHelper.addCourseAndInstructorToSection(sectionsM) != null;
     }
 
     public void updateSection(SectionsM sectionsM){

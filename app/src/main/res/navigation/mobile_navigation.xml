@@ -28,4 +28,10 @@
         android:name="com.example.baitiwb303_hw_f20_c.activity.ui.dr.DrFragment"
         android:label="@string/menu_dr"
         tools:layout="@layout/fragment_dr" />
+
+    <fragment
+        android:id="@+id/nav_enrollment"
+        android:name="com.example.baitiwb303_hw_f20_c.activity.ui.enrollment.EnrollmentFragment"
+        android:label="@string/menu_enrollment"
+        tools:layout="@layout/fragment_enrollment" />
 </navigation>

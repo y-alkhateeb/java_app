@@ -38,6 +38,7 @@
     <string name="prompt_section_room">Section Room</string>
     <string name="prompt_time">Time</string>
     <string name="add_section">Add Section</string>
+    <string name="enrollment_this_course">Enrollment this course</string>
     <string name="prompt_section_course">Please select a course</string>
     <string name="prompt_section_instructor">Please select an instructor</string>
 
@@ -52,15 +53,19 @@
     <string name="instructor_name">Instructor Name: </string>
     <string name="add_instructor">Add Instructor</string>
 
+    <string name="enrollment_grade">Grade: </string>
+
 
     <string name="prompt_delete">Delete</string>
     <string name="prompt_edit">Edit</string>
+    <string name="prompt_add_co_in">Add course and instructor</string>
 
 
     <string name="menu_home">Section</string>
     <string name="menu_gallery">Student</string>
     <string name="menu_slideshow">Course</string>
     <string name="menu_dr">Doctors</string>
+    <string name="menu_enrollment">Enrollment</string>
 
     <string-array name="gender_array">
         <item>Male</item>

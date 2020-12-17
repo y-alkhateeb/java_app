@@ -11,6 +11,7 @@ import android.util.Log;
 
 import com.example.baitiwb303_hw_f20_c.Models.AccountM;
 import com.example.baitiwb303_hw_f20_c.Models.CourseM;
+import com.example.baitiwb303_hw_f20_c.Models.EnrollmentM;
 import com.example.baitiwb303_hw_f20_c.Models.InstructorM;
 import com.example.baitiwb303_hw_f20_c.Models.SectionsM;
 
@@ -104,7 +105,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     // Create TABLE Sections
     String Create_TABLE_Sections = "CREATE TABLE " + TABLE_Section + " (" + Column_Section_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-
             Column_Section_No + " TEXT," +
             Column_Section_Room_No + " TEXT," +
             Column_Section_Time + " TEXT" +
@@ -161,6 +161,141 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         return resultSet;
+    }
+
+    public JSONArray get_all_data_groupby(String Table_Name,String groupBy) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        String searchQuery = "select * from " + Table_Name + " GROUP BY "+groupBy;
+        Cursor cursor = db.rawQuery(searchQuery, null);
+        JSONArray resultSet = new JSONArray();
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+
+            int totalColumn = cursor.getColumnCount();
+            JSONObject rowObject = new JSONObject();
+
+            for (int i = 0; i < totalColumn; i++) {
+                if (cursor.getColumnName(i) != null) {
+                    try {
+                        if (cursor.getString(i) != null) {
+                            rowObject.put(cursor.getColumnName(i), cursor.getString(i));
+                        } else {
+                            rowObject.put(cursor.getColumnName(i), "");
+                        }
+                    } catch (Exception e) {
+                        return null;
+                    }
+                }
+            }
+            resultSet.put(rowObject);
+            cursor.moveToNext();
+        }
+
+
+        cursor.close();
+        db.close();
+        return resultSet;
+    }
+
+    public JSONArray get_all_data_byId(String Table_Name,String id) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        String searchQuery = "select * from " + Table_Name + " where "+Column_Account_ID+" = ?";
+        Cursor cursor = db.rawQuery(searchQuery, new String[] {id});
+        JSONArray resultSet = new JSONArray();
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+
+            int totalColumn = cursor.getColumnCount();
+            JSONObject rowObject = new JSONObject();
+
+            for (int i = 0; i < totalColumn; i++) {
+                if (cursor.getColumnName(i) != null) {
+                    try {
+                        if (cursor.getString(i) != null) {
+                            rowObject.put(cursor.getColumnName(i), cursor.getString(i));
+                        } else {
+                            rowObject.put(cursor.getColumnName(i), "");
+                        }
+                    } catch (Exception e) {
+                        return null;
+                    }
+                }
+            }
+            resultSet.put(rowObject);
+            cursor.moveToNext();
+        }
+
+
+        cursor.close();
+        db.close();
+        return resultSet;
+    }
+
+    public JSONArray get_all_course_instructor_by_id(String Table_Name,String id) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        String searchQuery = "select * from " + Table_Name + " where "+Column_Section_ID+" = ?";
+        Cursor cursor = db.rawQuery(searchQuery, new String[] {id});
+        JSONArray resultSet = new JSONArray();
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+
+            int totalColumn = cursor.getColumnCount();
+            JSONObject rowObject = new JSONObject();
+
+            for (int i = 0; i < totalColumn; i++) {
+                if (cursor.getColumnName(i) != null) {
+                    try {
+                        if (cursor.getString(i) != null) {
+                            rowObject.put(cursor.getColumnName(i), cursor.getString(i));
+                        } else {
+                            rowObject.put(cursor.getColumnName(i), "");
+                        }
+                    } catch (Exception e) {
+                        return null;
+                    }
+                }
+            }
+            resultSet.put(rowObject);
+            cursor.moveToNext();
+        }
+
+
+        cursor.close();
+        db.close();
+        return resultSet;
+    }
+
+    public EnrollmentM CreateEnrollment(EnrollmentM data) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        try {
+            long result = -1;
+            contentValues.put(Column_Account_ID, data.getAccount_id());
+            contentValues.put(Column_Course_ID, data.getCourse_id());
+            contentValues.put(Column_Section_ID, data.getSection_id());
+            contentValues.put(Column_Enrollment_Grade, data.getEnrollment_grade());
+
+            result = db.insert(TABLE_Enrollment, null, contentValues);
+
+
+            if (result == -1) {
+                db.close();
+                Log.i("InsertIntoAccount", "InsertIntoAccount: false");
+                return null;
+            } else {
+                db.close();
+                Log.i("InsertIntoAccount", "InsertIntoAccount: true");
+                return data;
+            }
+        } catch (Exception e) {
+            Log.i("InsertIntoAccount", "Exception : " + e.getMessage());
+            return null;
+        }
+
+
     }
 
     public JSONArray getSectionByName(String Table_Name) {
@@ -426,8 +561,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         try {
             long result = -1;
-            contentValues.put(Column_Course_ID, data.getCourse_id());
-            contentValues.put(Column_Instructor_ID, data.getInstructor_id());
             contentValues.put(Column_Section_Room_No, data.getSection_room_no());
             contentValues.put(Column_Section_Time, data.getSection_time());
             contentValues.put(Column_Section_No, data.getSection_section_no());
@@ -457,8 +590,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         try {
             long result = -1;
-            contentValues.put(Column_Course_ID, Integer.parseInt(data.getCourse_id()));
-            contentValues.put(Column_Instructor_ID, Integer.parseInt(data.getInstructor_id()));
             contentValues.put(Column_Section_Room_No, data.getSection_room_no());
             contentValues.put(Column_Section_Time, data.getSection_time());
             contentValues.put(Column_Section_No, data.getSection_section_no());
@@ -480,42 +611,60 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public JSONArray GetDataQuestionUpload(String Table_Name, String VisitID) {
-
+    public SectionsM addCourseAndInstructorToSection(SectionsM data) {
         SQLiteDatabase db = this.getWritableDatabase();
-        String searchQuery;
-        searchQuery = "select * from " + Table_Name + " where visit_id " + " = '" + VisitID + "';";
+        ContentValues contentValues = new ContentValues();
+        try {
+            long result = -1;
+            contentValues.put(Column_Section_ID, data.getSection_id());
+            contentValues.put(Column_Course_ID, data.getCourse_id());
+            contentValues.put(Column_Instructor_ID, data.getInstructor_id());
 
-        Cursor cursor = db.rawQuery(searchQuery, null);
-        JSONArray resultSet = new JSONArray();
-        cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
+            result = db.insert(TABLE_SectionsWithInstructorAndCourses, null, contentValues);
 
-            int totalColumn = cursor.getColumnCount();
-            JSONObject rowObject = new JSONObject();
 
-            for (int i = 0; i < totalColumn; i++) {
-                if (cursor.getColumnName(i) != null) {
-                    try {
-                        if (cursor.getString(i) != null) {
-                            rowObject.put(cursor.getColumnName(i), cursor.getString(i));
-                        } else {
-                            rowObject.put(cursor.getColumnName(i), "");
-                        }
-                    } catch (Exception e) {
-                        return null;
-                    }
-                }
+            if (result == -1) {
+                db.close();
+                Log.i("InsertIntoAccount", "InsertIntoAccount: false");
+                return null;
+            } else {
+                db.close();
+                Log.i("InsertIntoAccount", "InsertIntoAccount: true");
+                return data;
             }
-            resultSet.put(rowObject);
-            cursor.moveToNext();
+        } catch (Exception e) {
+            Log.i("InsertIntoAccount", "Exception : " + e.getMessage());
+            return null;
         }
 
 
-        cursor.close();
-        db.close();
-        return resultSet;
     }
+
+    public void updateCourseAndInstructorToSection(SectionsM data) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        try {
+            long result = -1;
+            contentValues.put(Column_Course_ID, Integer.parseInt(data.getCourse_id()));
+            contentValues.put(Column_Instructor_ID, Integer.parseInt(data.getInstructor_id()));
+
+            result = db.update(TABLE_SectionsWithInstructorAndCourses, contentValues, Column_Section_ID + "=?", new String[]{data.getSection_id()});
+
+
+            if (result == -1) {
+                db.close();
+                Log.i("InsertIntoAccount", "InsertIntoAccount: false");
+            } else {
+                db.close();
+                Log.i("InsertIntoAccount", "InsertIntoAccount: true");
+            }
+        } catch (Exception e) {
+            Log.i("InsertIntoAccount", "Exception : " + e.getMessage());
+        }
+
+
+    }
+
 
     @Override
     public void onCreate(SQLiteDatabase db) {

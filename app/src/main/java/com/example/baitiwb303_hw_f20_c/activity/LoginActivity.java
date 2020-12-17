@@ -50,6 +50,38 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         databaseHelper = new DatabaseHelper(this);
+
+
+        AccountM accountM = new AccountM();
+        accountM = SettingsPref.getAccount(this);
+        if(!accountM.getUser_name().equals("") && !accountM.getPassword().equals("")){
+            Response_SignIn = databaseHelper.SignIn(accountM.getUser_name(), accountM.getPassword());
+            if (Response_SignIn.length() > 0) {
+                try {
+                    Toast.makeText(getApplicationContext(), "Successfully", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(this, MainActivity.class);
+                    JSONObject json_data_sign_in;
+                    json_data_sign_in = Response_SignIn.getJSONObject(0);
+                    accountM.setAccount_id(json_data_sign_in.getString(Column_Account_ID));
+                    accountM.setFirst_name(json_data_sign_in.getString(Column_Account_First_Name));
+                    accountM.setLast_name(json_data_sign_in.getString(Column_Account_Last_Name));
+                    accountM.setReg_Year(json_data_sign_in.getString(Column_Account_Reg_Yeer));
+                    accountM.setGender(json_data_sign_in.getString(Column_Account_Gender));
+                    accountM.setAddress(json_data_sign_in.getString(Column_Account_Address));
+                    accountM.setMobile_No(json_data_sign_in.getString(Column_Account_Mobile));
+                    intent.putExtra("LOGIN_INFO", accountM);
+                    this.finish();
+                    startActivity(intent);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            else
+            {
+                Toast.makeText(getApplicationContext(), "Error UserName or Password", Toast.LENGTH_SHORT).show();
+
+            }
+        }
         username = findViewById(R.id.username);
         password =  findViewById(R.id.password);
         login =  findViewById(R.id.login);
@@ -93,6 +125,10 @@ public class LoginActivity extends AppCompatActivity {
                     Intent intent = new Intent(this, MainActivity.class);
                     JSONObject json_data_sign_in;
                     json_data_sign_in = Response_SignIn.getJSONObject(0);
+                    SettingsPref.setAccount(json_data_sign_in.getString(Column_Account_ID),
+                            json_data_sign_in.getString(Column_Account_User_Name),
+                            json_data_sign_in.getString(Column_Account_Password),
+                            this);
                     AccountM accountM = new AccountM();
                     accountM.setAccount_id(json_data_sign_in.getString(Column_Account_ID));
                     accountM.setFirst_name(json_data_sign_in.getString(Column_Account_First_Name));

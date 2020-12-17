@@ -12,8 +12,14 @@ public class SectionsM implements Serializable {
     @SerializedName("course_id")
     String course_id;
 
+    @SerializedName("course_name")
+    String course_name;
+
     @SerializedName("instructor_id")
     String instructor_id;
+
+    @SerializedName("instructor_name")
+    String instructor_name;
 
     @SerializedName("section_section_no")
     String section_section_no;
@@ -28,8 +34,16 @@ public class SectionsM implements Serializable {
         return course_id;
     }
 
+    public String getCourse_name() {
+        return course_name;
+    }
+
     public void setCourse_id(String course_id) {
         this.course_id = course_id;
+    }
+
+    public void setCourse_name(String course_name) {
+        this.course_name = course_name;
     }
 
     public String getInstructor_id() {
@@ -38,6 +52,14 @@ public class SectionsM implements Serializable {
 
     public void setInstructor_id(String instructor_id) {
         this.instructor_id = instructor_id;
+    }
+
+    public String getInstructor_name() {
+        return instructor_name;
+    }
+
+    public void setInstructor_name(String instructor_name) {
+        this.instructor_name = instructor_name;
     }
 
     public String getSection_section_no() {
