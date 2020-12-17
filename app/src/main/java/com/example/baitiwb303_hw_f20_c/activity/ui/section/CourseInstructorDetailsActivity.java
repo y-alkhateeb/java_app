@@ -6,6 +6,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -37,6 +38,11 @@ public class CourseInstructorDetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        int Theme = SettingsPref.getTheme(this);
+        if(Theme != 0)
+        {
+            setTheme(Theme);
+        }
         setContentView(R.layout.activity_course_instructor_details);
 
         AccountId = SettingsPref.getAccount(this).getAccount_id();
@@ -95,7 +101,10 @@ public class CourseInstructorDetailsActivity extends AppCompatActivity {
         enrollment_this_course.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                if(SettingsPref.getEnableSound(getApplicationContext())){
+                    final MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.tone);
+                    mp.start();
+                }
                 EnrollmentM enrollmentM = new EnrollmentM();
                 enrollmentM.setEnrollment_grade("0");
                 enrollmentM.setCourse_id(sectionsM.getCourse_id());

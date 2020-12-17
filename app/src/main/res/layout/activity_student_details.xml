@@ -22,6 +22,7 @@
             android:id="@+id/details_student_username"
             android:layout_width="wrap_content"
             android:gravity="start"
+            android:textColor="?attr/text"
             android:layout_height="wrap_content"
             android:layout_weight="0.7"/>
     </LinearLayout>
@@ -38,6 +39,7 @@
             android:id="@+id/details_student_firstname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="?attr/text"
             android:gravity="start"
             android:layout_weight="0.7"/>
     </LinearLayout>
@@ -54,6 +56,7 @@
             android:id="@+id/details_student_lastname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="?attr/text"
             android:gravity="start"
             android:layout_weight="0.7"/>
     </LinearLayout>
@@ -71,6 +74,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="start"
+            android:textColor="?attr/text"
             android:layout_weight="0.7"/>
     </LinearLayout>
     <LinearLayout
@@ -87,6 +91,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="start"
+            android:textColor="?attr/text"
             android:layout_weight="0.7"/>
     </LinearLayout>
     <LinearLayout
@@ -102,6 +107,7 @@
             android:id="@+id/details_student_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="?attr/text"
             android:gravity="start"
             android:layout_weight="0.7"/>
     </LinearLayout>

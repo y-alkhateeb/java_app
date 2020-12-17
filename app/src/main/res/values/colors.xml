@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- First Theme -->
+    <color name="s1_background">#528BBD</color>
+    <color name="s1_button">#416CB6</color>
+    <color name="s1_text">#DD2929</color>
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -16,6 +19,9 @@
 
 
     <!-- Second Theme -->
+    <color name="s2_background">#B6EFC9</color>
+    <color name="s2_button">#A10101</color>
+    <color name="s2_text">#232222</color>
     <color name="s_purple_200">#20162C</color>
     <color name="s_purple_500">#1A013C</color>
     <color name="s_purple_700">#170D2E</color>
@@ -28,5 +34,58 @@
     <color name="s_colorPrimaryDark">#6198EA</color>
     <color name="s_colorAccent">#FF4800</color>
     <color name="s_zircon">#B5D5CA</color>
+
+
+    <!-- Third Theme -->
+    <color name="s3_background">#18E612</color>
+    <color name="s3_button">#FF0000</color>
+    <color name="s3_text">#090909</color>
+    <color name="s3_purple_200">#20162C</color>
+    <color name="s3_purple_500">#1A013C</color>
+    <color name="s3_purple_700">#170D2E</color>
+    <color name="s3_teal_200">#0384DA</color>
+    <color name="s3_teal_700">#018768</color>
+    <color name="s3_black">#FF000000</color>
+    <color name="s3_red">#EA5959</color>
+    <color name="s3_white">#D1CCCC</color>
+    <color name="s3_colorPrimary">#5A9DEF</color>
+    <color name="s3_colorPrimaryDark">#6198EA</color>
+    <color name="s3_colorAccent">#FF4800</color>
+    <color name="s3_zircon">#B5D5CA</color>
+
+    <!-- fourth Theme -->
+    <color name="s4_background">#EFE497</color>
+    <color name="s4_button">#27251C</color>
+    <color name="s4_text">#EDD70F</color>
+    <color name="s4_purple_200">#20162C</color>
+    <color name="s4_purple_500">#1A013C</color>
+    <color name="s4_purple_700">#170D2E</color>
+    <color name="s4_teal_200">#0384DA</color>
+    <color name="s4_teal_700">#018768</color>
+    <color name="s4_black">#FF000000</color>
+    <color name="s4_red">#EA5959</color>
+    <color name="s4_white">#D1CCCC</color>
+    <color name="s4_colorPrimary">#5A9DEF</color>
+    <color name="s4_colorPrimaryDark">#6198EA</color>
+    <color name="s4_colorAccent">#FF4800</color>
+    <color name="s4_zircon">#B5D5CA</color>
+
+
+    <!-- fifth Theme -->
+    <color name="s5_background">#D410FF</color>
+    <color name="s5_button">#FF1919</color>
+    <color name="s5_text">#000000</color>
+    <color name="s5_purple_200">#20162C</color>
+    <color name="s5_purple_500">#1A013C</color>
+    <color name="s5_purple_700">#170D2E</color>
+    <color name="s5_teal_200">#0384DA</color>
+    <color name="s5_teal_700">#018768</color>
+    <color name="s5_black">#FF000000</color>
+    <color name="s5_red">#EA5959</color>
+    <color name="s5_white">#D1CCCC</color>
+    <color name="s5_colorPrimary">#5A9DEF</color>
+    <color name="s5_colorPrimaryDark">#6198EA</color>
+    <color name="s5_colorAccent">#FF4800</color>
+    <color name="s5_zircon">#B5D5CA</color>
 
 </resources>

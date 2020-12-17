@@ -2,6 +2,7 @@ package com.example.baitiwb303_hw_f20_c.activity;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -89,6 +90,10 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(SettingsPref.getEnableSound(getApplicationContext())){
+                    final MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.tone);
+                    mp.start();
+                }
                 SetValidation();
             }
         });

@@ -6,17 +6,18 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.example.baitiwb303_hw_f20_c.Models.CourseM;
 import com.example.baitiwb303_hw_f20_c.Models.InstructorM;
 import com.example.baitiwb303_hw_f20_c.Models.SectionsM;
 import com.example.baitiwb303_hw_f20_c.R;
+import com.example.baitiwb303_hw_f20_c.Tools.SettingsPref;
 import com.example.baitiwb303_hw_f20_c.activity.ui.course.CourseViewModel;
 import com.example.baitiwb303_hw_f20_c.activity.ui.dr.DrViewModel;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
@@ -37,6 +38,11 @@ public class AddInstructorAndCoursesToSectionActivity extends AppCompatActivity 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        int Theme = SettingsPref.getTheme(this);
+        if(Theme != 0)
+        {
+            setTheme(Theme);
+        }
         setContentView(R.layout.activity_add_instructor_and_courses_to_section);
 
         courseArray = new ArrayList<String>();
@@ -90,6 +96,10 @@ public class AddInstructorAndCoursesToSectionActivity extends AppCompatActivity 
         addSection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(SettingsPref.getEnableSound(getApplicationContext())){
+                    final MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.tone);
+                    mp.start();
+                }
                 sectionsM.setSection_id(sectionsM.getSection_id());
                 for(int i = 0; i< Objects.requireNonNull(courseViewModel.getCourse().getValue()).size(); i++){
                     if(courseViewModel.getCourse().getValue().get(i).getCourse_tittle() == courseSpinner.getSelectedItem()){

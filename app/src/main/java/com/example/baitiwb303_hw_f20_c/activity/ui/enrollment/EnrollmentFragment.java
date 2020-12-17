@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.baitiwb303_hw_f20_c.Models.AccountM;
 import com.example.baitiwb303_hw_f20_c.Models.EnrollmentM;
 import com.example.baitiwb303_hw_f20_c.R;
+import com.example.baitiwb303_hw_f20_c.Tools.SettingsPref;
 import com.example.baitiwb303_hw_f20_c.activity.ui.course.CourseViewModel;
 import com.example.baitiwb303_hw_f20_c.activity.ui.dr.DrViewModel;
 import com.example.baitiwb303_hw_f20_c.activity.ui.section.CourseAndInstructorViewModel;
@@ -37,7 +38,11 @@ public class EnrollmentFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-
+        int Theme = SettingsPref.getTheme(getContext());
+        if(Theme != 0)
+        {
+            getActivity().setTheme(Theme);
+        }
         View root = inflater.inflate(R.layout.fragment_enrollment, container, false);
         enrollmentRecycleView = root.findViewById(R.id.enrollment_recycleView);
 

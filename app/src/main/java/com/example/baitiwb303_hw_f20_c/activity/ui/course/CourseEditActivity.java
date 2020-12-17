@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,6 +14,7 @@ import android.widget.Spinner;
 import com.example.baitiwb303_hw_f20_c.Models.AccountM;
 import com.example.baitiwb303_hw_f20_c.Models.CourseM;
 import com.example.baitiwb303_hw_f20_c.R;
+import com.example.baitiwb303_hw_f20_c.Tools.SettingsPref;
 import com.example.baitiwb303_hw_f20_c.database.DatabaseHelper;
 
 public class CourseEditActivity extends AppCompatActivity {
@@ -34,6 +36,10 @@ public class CourseEditActivity extends AppCompatActivity {
         addCourse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(SettingsPref.getEnableSound(getApplicationContext())){
+                    final MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.tone);
+                    mp.start();
+                }
                 courseM.setCourse_id(courseM.getCourse_id());
                 courseM.setCourse_tittle(course_title.getText().toString());
                 courseM.setCourse_hours(course_hours.getText().toString());

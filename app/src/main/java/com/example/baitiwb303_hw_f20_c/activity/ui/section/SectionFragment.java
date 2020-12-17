@@ -20,6 +20,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.SearchView;
+
+import com.example.baitiwb303_hw_f20_c.Tools.SettingsPref;
 import com.example.baitiwb303_hw_f20_c.activity.MainActivity;
 
 public class SectionFragment extends Fragment {
@@ -29,6 +31,11 @@ public class SectionFragment extends Fragment {
     private RecyclerView sectionRecycleView;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        int Theme = SettingsPref.getTheme(getContext());
+        if(Theme != 0)
+        {
+            getActivity().setTheme(Theme);
+        }
         setHasOptionsMenu(true);
         View root = inflater.inflate(R.layout.fragment_section, container, false);
         sectionRecycleView = root.findViewById(R.id.section_recycleView);

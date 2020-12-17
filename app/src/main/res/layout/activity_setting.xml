@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.ui.SettingActivity"
     android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@mipmap/profile"/>
+    </LinearLayout>
+
     <RadioGroup
         android:layout_margin="@dimen/activity_horizontal_margin"
         android:id="@+id/radioGroup"
@@ -26,13 +36,39 @@
             android:layout_height="wrap_content"
             android:text="Second Theme"
             android:textSize="18sp"/>
+        <RadioButton
+            android:id="@+id/radioButton3"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Third Theme"
+            android:textSize="18sp"/>
+        <RadioButton
+            android:id="@+id/radioButton4"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Fourth Theme"
+            android:textSize="18sp"/>
+        <RadioButton
+            android:id="@+id/radioButton5"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Fifth Theme"
+            android:textSize="18sp"/>
 
     </RadioGroup>
+
+    <Switch
+        android:id="@+id/enable_sound"
+        android:layout_marginHorizontal="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Enable Sound" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="SUBMIT"
+        android:layout_marginVertical="8dp"
         android:onClick="onSubmit"
         android:id="@+id/button2"
         android:textSize="18sp"

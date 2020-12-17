@@ -26,6 +26,7 @@
                 android:id="@+id/details_co_in_section_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="?attr/text"
                 android:layout_weight="0.7"
                 android:gravity="start" />
         </LinearLayout>
@@ -45,6 +46,7 @@
                 android:id="@+id/details_co_in_section_room"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="?attr/text"
                 android:layout_weight="0.7"
                 android:gravity="start" />
         </LinearLayout>
@@ -61,6 +63,7 @@
             <TextView
                 android:id="@+id/details_co_in_course_title"
                 android:layout_width="wrap_content"
+                android:textColor="?attr/text"
                 android:gravity="start"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.7"/>
@@ -78,6 +81,7 @@
                 android:id="@+id/details_co_in_course_hours"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="?attr/text"
                 android:gravity="start"
                 android:layout_weight="0.7"/>
         </LinearLayout>
@@ -96,6 +100,7 @@
                 android:id="@+id/details_co_in_instructor_firstname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="?attr/text"
                 android:gravity="start"
                 android:layout_weight="0.7"/>
         </LinearLayout>
@@ -113,6 +118,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="start"
+                android:textColor="?attr/text"
                 android:layout_weight="0.7"/>
         </LinearLayout>
 

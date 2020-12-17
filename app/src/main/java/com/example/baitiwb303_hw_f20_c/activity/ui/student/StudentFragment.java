@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.baitiwb303_hw_f20_c.Models.AccountM;
 import com.example.baitiwb303_hw_f20_c.R;
+import com.example.baitiwb303_hw_f20_c.Tools.SettingsPref;
 import com.example.baitiwb303_hw_f20_c.activity.MainActivity;
 
 import java.util.List;
@@ -36,6 +37,11 @@ public class StudentFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        int Theme = SettingsPref.getTheme(getContext());
+        if(Theme != 0)
+        {
+            getActivity().setTheme(Theme);
+        }
         setHasOptionsMenu(true);
         studentViewModel =
                 new ViewModelProvider(this).get(StudentViewModel.class);

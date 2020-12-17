@@ -21,7 +21,8 @@ public class SettingsPref {
 
     public static int getTheme(Context context) {
         SharedPreferences sharedPreferences = getMainShardPreferences(context);
-        return sharedPreferences.getInt("Theme", R.style.FirstTheme);
+        int ss= sharedPreferences.getInt("Theme", R.style.FirstTheme);
+        return  ss;
     }
 
     public static void setAccount(String id, String username, String pass, String priv,Context context) {
@@ -31,6 +32,19 @@ public class SettingsPref {
         editorShared.putString(Constant.Pass, pass);
         editorShared.putString(Constant.priv, priv);
         editorShared.commit();
+    }
+
+
+    public static void setEnableSound(boolean b,Context context) {
+        editorShared = getMainShardPreferences(context).edit();
+        editorShared.putBoolean(Constant.ENABLE_SOUND, b);
+        editorShared.commit();
+    }
+
+    public static boolean getEnableSound(Context context) {
+        SharedPreferences sharedPreferences = getMainShardPreferences(context);
+        return sharedPreferences.getBoolean(Constant.ENABLE_SOUND, true);
+
     }
 
     public static AccountM getAccount(Context context) {

@@ -3,6 +3,7 @@ package com.example.baitiwb303_hw_f20_c.activity.ui.dr;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -12,6 +13,7 @@ import android.widget.Spinner;
 
 import com.example.baitiwb303_hw_f20_c.Models.InstructorM;
 import com.example.baitiwb303_hw_f20_c.R;
+import com.example.baitiwb303_hw_f20_c.Tools.SettingsPref;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -25,6 +27,11 @@ public class CreateDrActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        int Theme = SettingsPref.getTheme(this);
+        if(Theme != 0)
+        {
+            setTheme(Theme);
+        }
         setContentView(R.layout.activity_create_dr);
 
         drViewModel =
@@ -45,6 +52,10 @@ public class CreateDrActivity extends AppCompatActivity {
         addInstructor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(SettingsPref.getEnableSound(getApplicationContext())){
+                    final MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.tone);
+                    mp.start();
+                }
                 InstructorM instructorM = new InstructorM();
                 instructorM.setInstructor_gender(spinner.getSelectedItem().toString());
                 instructorM.setInstructor_first_name(firstName.getText().toString());

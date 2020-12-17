@@ -25,6 +25,7 @@
                 android:id="@+id/details_instructor_firstname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="?attr/text"
                 android:gravity="start"
                 android:layout_weight="0.7"/>
         </LinearLayout>
@@ -41,6 +42,7 @@
                 android:id="@+id/details_instructor_lastname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="?attr/text"
                 android:gravity="start"
                 android:layout_weight="0.7"/>
         </LinearLayout>
@@ -57,6 +59,7 @@
                 android:id="@+id/details_instructor_mobile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="?attr/text"
                 android:gravity="start"
                 android:layout_weight="0.7"/>
         </LinearLayout>
@@ -73,6 +76,7 @@
                 android:id="@+id/details_instructor_gender"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="?attr/text"
                 android:gravity="start"
                 android:layout_weight="0.7"/>
         </LinearLayout>
@@ -89,6 +93,7 @@
                 android:id="@+id/details_instructor_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="?attr/text"
                 android:gravity="start"
                 android:layout_weight="0.7"/>
         </LinearLayout>

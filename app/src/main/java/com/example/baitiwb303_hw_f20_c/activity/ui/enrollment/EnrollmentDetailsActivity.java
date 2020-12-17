@@ -13,15 +13,12 @@ import android.os.Bundle;
 import com.example.baitiwb303_hw_f20_c.Models.AccountM;
 import com.example.baitiwb303_hw_f20_c.Models.CourseM;
 import com.example.baitiwb303_hw_f20_c.Models.EnrollmentM;
-import com.example.baitiwb303_hw_f20_c.Models.InstructorM;
 import com.example.baitiwb303_hw_f20_c.Models.SectionsM;
 import com.example.baitiwb303_hw_f20_c.R;
+import com.example.baitiwb303_hw_f20_c.Tools.SettingsPref;
 import com.example.baitiwb303_hw_f20_c.activity.ui.course.CourseViewModel;
 import com.example.baitiwb303_hw_f20_c.activity.ui.dr.DrViewModel;
 import com.example.baitiwb303_hw_f20_c.activity.ui.section.SectionViewModel;
-import com.example.baitiwb303_hw_f20_c.activity.ui.student.StudentViewModel;
-import com.example.baitiwb303_hw_f20_c.database.Instructor;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -38,6 +35,11 @@ public class EnrollmentDetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        int Theme = SettingsPref.getTheme(this);
+        if(Theme != 0)
+        {
+            setTheme(Theme);
+        }
         setContentView(R.layout.activity_enrollment_details);
         enrollmentViewModel =
                 new ViewModelProvider(this).get(EnrollmentViewModel.class);

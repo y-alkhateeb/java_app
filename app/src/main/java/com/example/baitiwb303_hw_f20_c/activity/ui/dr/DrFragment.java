@@ -22,6 +22,7 @@ import android.widget.SearchView;
 
 import com.example.baitiwb303_hw_f20_c.Models.InstructorM;
 import com.example.baitiwb303_hw_f20_c.R;
+import com.example.baitiwb303_hw_f20_c.Tools.SettingsPref;
 import com.example.baitiwb303_hw_f20_c.activity.MainActivity;
 
 import java.util.List;
@@ -33,6 +34,11 @@ public class DrFragment extends Fragment {
     private RecyclerView instructorRecycleView;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        int Theme = SettingsPref.getTheme(getContext());
+        if(Theme != 0)
+        {
+            getActivity().setTheme(Theme);
+        }
         setHasOptionsMenu(true);
         DrViewModel =
                 new ViewModelProvider(this).get(DrViewModel.class);

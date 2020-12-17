@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +12,7 @@ import android.widget.EditText;
 
 import com.example.baitiwb303_hw_f20_c.Models.SectionsM;
 import com.example.baitiwb303_hw_f20_c.R;
+import com.example.baitiwb303_hw_f20_c.Tools.SettingsPref;
 
 public class SectionEditActivity extends AppCompatActivity {
     private EditText sectionNo, section_room, sectionTime;
@@ -19,6 +21,11 @@ public class SectionEditActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        int Theme = SettingsPref.getTheme(this);
+        if(Theme != 0)
+        {
+            setTheme(Theme);
+        }
         setContentView(R.layout.activity_section_edit);
         sectionViewModel =
                 new ViewModelProvider(this).get(SectionViewModel.class);
@@ -38,6 +45,10 @@ public class SectionEditActivity extends AppCompatActivity {
         editSection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(SettingsPref.getEnableSound(getApplicationContext())){
+                    final MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.tone);
+                    mp.start();
+                }
                 sectionsM.setSection_id(sectionsM.getSection_id());
                 sectionsM.setSection_section_no(sectionNo.getText().toString());
                 sectionsM.setSection_room_no(section_room.getText().toString());

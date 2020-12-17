@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -13,6 +14,7 @@ import android.widget.Spinner;
 
 import com.example.baitiwb303_hw_f20_c.Models.InstructorM;
 import com.example.baitiwb303_hw_f20_c.R;
+import com.example.baitiwb303_hw_f20_c.Tools.SettingsPref;
 import com.example.baitiwb303_hw_f20_c.database.DatabaseHelper;
 
 public class InstructorEditActivity extends AppCompatActivity {
@@ -24,6 +26,11 @@ public class InstructorEditActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        int Theme = SettingsPref.getTheme(this);
+        if(Theme != 0)
+        {
+            setTheme(Theme);
+        }
         setContentView(R.layout.activity_instructor_edit);
         DrViewModel =
                 new ViewModelProvider(this).get(DrViewModel.class);
@@ -45,6 +52,10 @@ public class InstructorEditActivity extends AppCompatActivity {
         addInstructor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(SettingsPref.getEnableSound(getApplicationContext())){
+                    final MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.tone);
+                    mp.start();
+                }
                 instructorM.setInstructor_id(instructorM.getInstructor_id());
                 instructorM.setInstructor_gender(spinner.getSelectedItem().toString());
                 instructorM.setInstructor_first_name(firstName.getText().toString());

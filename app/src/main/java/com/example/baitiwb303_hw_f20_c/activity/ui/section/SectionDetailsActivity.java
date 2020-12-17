@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -38,6 +39,11 @@ public class SectionDetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        int Theme = SettingsPref.getTheme(this);
+        if(Theme != 0)
+        {
+            setTheme(Theme);
+        }
         setContentView(R.layout.activity_section_details);
         courseAndInstructorViewModel =
                 new ViewModelProvider(this).get(CourseAndInstructorViewModel.class);
@@ -75,6 +81,10 @@ public class SectionDetailsActivity extends AppCompatActivity {
         details_section_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(SettingsPref.getEnableSound(getApplicationContext())){
+                    final MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.tone);
+                    mp.start();
+                }
                 sectionViewModel.delete(sectionsM.getSection_id());
                 finish();
             }
@@ -82,6 +92,10 @@ public class SectionDetailsActivity extends AppCompatActivity {
         details_section_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(SettingsPref.getEnableSound(getApplicationContext())){
+                    final MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.tone);
+                    mp.start();
+                }
                 Intent editIntent = new Intent(view.getContext(), SectionEditActivity.class);
                 editIntent.putExtra("section_details", sectionsM);
                 startActivity(editIntent);
@@ -91,6 +105,10 @@ public class SectionDetailsActivity extends AppCompatActivity {
         details_section_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(SettingsPref.getEnableSound(getApplicationContext())){
+                    final MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.tone);
+                    mp.start();
+                }
                 Intent addIntent = new Intent(view.getContext(), AddInstructorAndCoursesToSectionActivity.class);
                 addIntent.putExtra("section_add_co_in", sectionsM);
                 startActivity(addIntent);
