@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.example.baitiwb303_hw_f20_c.Models.AccountM;
 import com.example.baitiwb303_hw_f20_c.R;
+import com.example.baitiwb303_hw_f20_c.Tools.SettingsPref;
 import com.example.baitiwb303_hw_f20_c.activity.ui.SettingActivity;
 import com.example.baitiwb303_hw_f20_c.activity.ui.course.CreateCourseActivity;
 import com.example.baitiwb303_hw_f20_c.activity.ui.dr.CreateDrActivity;
@@ -29,6 +30,11 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private Toolbar toolbar;
+    private MenuItem nav_section;
+    private MenuItem nav_student;
+    private MenuItem nav_course;
+    private MenuItem nav_dr;
+    private MenuItem nav_enrollment;
     int currentFragment = 0;
 
     @Override
@@ -39,31 +45,39 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
             return true;
         }
+
+        if (item.getItemId() == R.id.action_logout) {
+            SettingsPref.logout(this);
+            Intent intent = new Intent(this, LoginActivity.class);
+            finish();
+            startActivity(intent);
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        AccountM accountM = SettingsPref.getAccount(this);
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(currentFragment == 0){
+                if (currentFragment == 0) {
                     Intent intent = new Intent(MainActivity.this, CreateSectionActivity.class);
                     startActivity(intent);
-                }
-                else if(currentFragment == 1){
+                } else if (currentFragment == 1) {
                     Intent intent = new Intent(MainActivity.this, CreateStudentActivity.class);
                     startActivity(intent);
-                }
-                else if(currentFragment == 2){
+                } else if (currentFragment == 2) {
                     Intent intent = new Intent(MainActivity.this, CreateCourseActivity.class);
                     startActivity(intent);
-                }
-                else if(currentFragment == 3){
+                } else if (currentFragment == 3) {
                     Intent intent = new Intent(MainActivity.this, CreateDrActivity.class);
                     startActivity(intent);
                 }
@@ -71,46 +85,62 @@ public class MainActivity extends AppCompatActivity {
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
+        nav_section = navigationView.getMenu().findItem(R.id.nav_section);
+        nav_student = navigationView.getMenu().findItem(R.id.nav_student);
+        nav_course = navigationView.getMenu().findItem(R.id.nav_course);
+        nav_dr = navigationView.getMenu().findItem(R.id.nav_dr);
+        nav_enrollment = navigationView.getMenu().findItem(R.id.nav_enrollment);
+
+        if (accountM.getPrivilege().equals("1")) {
+            nav_section.setVisible(true);
+            nav_student.setVisible(true);
+            nav_course.setVisible(true);
+            nav_dr.setVisible(true);
+            nav_enrollment.setVisible(true);
+        } else {
+            nav_section.setVisible(true);
+            nav_student.setVisible(false);
+            nav_course.setVisible(false);
+            nav_dr.setVisible(false);
+            nav_enrollment.setVisible(false);
+        }
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_section, R.id.nav_student, R.id.nav_course, R.id.nav_dr, R.id.nav_enrollment)
                 .setDrawerLayout(drawer)
                 .build();
-
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
         navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
-            if(destination.getId() == R.id.nav_section){
+            if (destination.getId() == R.id.nav_section) {
                 currentFragment = 0;
-                fab.setVisibility(View.VISIBLE);
-            }
-            else if(destination.getId() == R.id.nav_student){
+                if (accountM.getPrivilege().equals("1"))
+                    fab.setVisibility(View.VISIBLE);
+                else fab.setVisibility(View.GONE);
+            } else if (destination.getId() == R.id.nav_student) {
                 currentFragment = 1;
                 fab.setVisibility(View.VISIBLE);
-            }
-            else if(destination.getId() == R.id.nav_course){
+            } else if (destination.getId() == R.id.nav_course) {
                 currentFragment = 2;
                 fab.setVisibility(View.VISIBLE);
-            }
-            else if(destination.getId() == R.id.nav_dr){
+            } else if (destination.getId() == R.id.nav_dr) {
                 currentFragment = 3;
                 fab.setVisibility(View.VISIBLE);
-            }
-            else if(destination.getId() == R.id.nav_enrollment){
+            } else if (destination.getId() == R.id.nav_enrollment) {
                 currentFragment = 4;
                 fab.setVisibility(View.GONE);
             }
         });
         Intent intent = getIntent();
-        AccountM accountM = (AccountM) intent.getSerializableExtra("LOGIN_INFO");
+        AccountM account = (AccountM) intent.getSerializableExtra("LOGIN_INFO");
         View hView = navigationView.getHeaderView(0);
         TextView nav_full_name = hView.findViewById(R.id.nav_bar_full_name);
         TextView nav_user_name = hView.findViewById(R.id.nav_bar_username);
-        String full_name = accountM.getFirst_name() + " " + accountM.getLast_name();
+        String full_name = account.getFirst_name() + " " + account.getLast_name();
         nav_full_name.setText(full_name);
-        nav_user_name.setText(accountM.getUser_name());
+        nav_user_name.setText(account.getUser_name());
     }
 
     @Override

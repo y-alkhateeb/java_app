@@ -5,5 +5,5 @@ public class Constant {
     public static final String AccountId = "idKey";
     public static final String UserName = "usernameKey";
     public static final String Pass = "passKey";
-    public static final String prev = "prevKey";
+    public static final String priv = "privKey";
 }

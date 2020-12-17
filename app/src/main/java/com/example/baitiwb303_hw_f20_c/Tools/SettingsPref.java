@@ -6,10 +6,6 @@ import android.content.SharedPreferences;
 import com.example.baitiwb303_hw_f20_c.Models.AccountM;
 import com.example.baitiwb303_hw_f20_c.R;
 
-import java.util.Locale;
-
-import static com.example.baitiwb303_hw_f20_c.Tools.Constant.AccountId;
-
 public class SettingsPref {
     private static SharedPreferences.Editor editorShared;
 
@@ -28,11 +24,12 @@ public class SettingsPref {
         return sharedPreferences.getInt("Theme", R.style.FirstTheme);
     }
 
-    public static void setAccount(String id, String username, String pass, Context context) {
+    public static void setAccount(String id, String username, String pass, String priv,Context context) {
         editorShared = getMainShardPreferences(context).edit();
         editorShared.putString(Constant.AccountId, id);
         editorShared.putString(Constant.UserName, username);
         editorShared.putString(Constant.Pass, pass);
+        editorShared.putString(Constant.priv, priv);
         editorShared.commit();
     }
 
@@ -42,7 +39,15 @@ public class SettingsPref {
         accountM.setAccount_id(sharedPreferences.getString(Constant.AccountId,""));
         accountM.setUser_name(sharedPreferences.getString(Constant.UserName,""));
         accountM.setPassword(sharedPreferences.getString(Constant.Pass,""));
-        accountM.setPrivilege(sharedPreferences.getString(Constant.prev,""));
+        accountM.setPrivilege(sharedPreferences.getString(Constant.priv,""));
         return accountM;
+    }
+
+    public static void logout(Context context) {
+        SharedPreferences sharedPreferences = getMainShardPreferences(context);
+        sharedPreferences.edit().remove(Constant.AccountId).commit();
+        sharedPreferences.edit().remove(Constant.UserName).commit();
+        sharedPreferences.edit().remove(Constant.Pass).commit();
+        sharedPreferences.edit().remove(Constant.priv).commit();
     }
 }

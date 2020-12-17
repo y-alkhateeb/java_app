@@ -52,8 +52,7 @@ public class LoginActivity extends AppCompatActivity {
         databaseHelper = new DatabaseHelper(this);
 
 
-        AccountM accountM = new AccountM();
-        accountM = SettingsPref.getAccount(this);
+        AccountM accountM = SettingsPref.getAccount(this);
         if(!accountM.getUser_name().equals("") && !accountM.getPassword().equals("")){
             Response_SignIn = databaseHelper.SignIn(accountM.getUser_name(), accountM.getPassword());
             if (Response_SignIn.length() > 0) {
@@ -128,6 +127,7 @@ public class LoginActivity extends AppCompatActivity {
                     SettingsPref.setAccount(json_data_sign_in.getString(Column_Account_ID),
                             json_data_sign_in.getString(Column_Account_User_Name),
                             json_data_sign_in.getString(Column_Account_Password),
+                            json_data_sign_in.getString(Column_Account_Privilege),
                             this);
                     AccountM accountM = new AccountM();
                     accountM.setAccount_id(json_data_sign_in.getString(Column_Account_ID));
