@@ -14,8 +14,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.baitiwb303_hw_f20_c.Models.AccountM;
 import com.example.baitiwb303_hw_f20_c.Models.SectionsM;
 import com.example.baitiwb303_hw_f20_c.R;
+import com.example.baitiwb303_hw_f20_c.Tools.SettingsPref;
 import com.example.baitiwb303_hw_f20_c.activity.ui.course.CourseViewModel;
 import com.example.baitiwb303_hw_f20_c.activity.ui.dr.DrViewModel;
 
@@ -23,7 +25,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class SectionDetailsActivity extends AppCompatActivity {
-    TextView details_section_no, details_section_room,  details_section_time;
+    TextView details_section_no, details_section_room, details_section_time;
     Button details_section_delete, details_section_edit, details_section_add;
     private SectionViewModel sectionViewModel;
     private CourseViewModel courseViewModel;
@@ -32,6 +34,7 @@ public class SectionDetailsActivity extends AppCompatActivity {
     private CourseAndInstructorAdapter courseAndInstructorAdapter;
     private RecyclerView sectionRecycleView;
     private CourseAndInstructorViewModel courseAndInstructorViewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +61,17 @@ public class SectionDetailsActivity extends AppCompatActivity {
         details_section_add = findViewById(R.id.details_section_add);
         details_section_delete = findViewById(R.id.details_section_delete);
         details_section_edit = findViewById(R.id.details_section_edit);
-
+        AccountM accountM = SettingsPref.getAccount(this);
+        if (accountM.getPrivilege().equals("1")) {
+            details_section_delete.setVisibility(View.VISIBLE);
+            details_section_edit.setVisibility(View.VISIBLE);
+            details_section_add.setVisibility(View.VISIBLE);
+        }
+        else{
+            details_section_delete.setVisibility(View.GONE);
+            details_section_edit.setVisibility(View.GONE);
+            details_section_add.setVisibility(View.GONE);
+        }
         details_section_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -91,7 +104,7 @@ public class SectionDetailsActivity extends AppCompatActivity {
         courseAndInstructorViewModel.getCourseAndInstructor(sectionsM.getSection_id()).observe(this, new Observer<List<SectionsM>>() {
             @Override
             public void onChanged(@Nullable List<SectionsM> s) {
-                for(int i = 0; i< Objects.requireNonNull(s).size(); i++){
+                for (int i = 0; i < Objects.requireNonNull(s).size(); i++) {
                     s.get(i).setSection_section_no(sectionsM.getSection_section_no());
                     s.get(i).setSection_room_no(sectionsM.getSection_room_no());
 
@@ -109,7 +122,7 @@ public class SectionDetailsActivity extends AppCompatActivity {
 
                 }
 
-                courseAndInstructorAdapter = new CourseAndInstructorAdapter(getApplicationContext(),s);
+                courseAndInstructorAdapter = new CourseAndInstructorAdapter(getApplicationContext(), s);
                 sectionRecycleView.setAdapter(courseAndInstructorAdapter);
             }
         });

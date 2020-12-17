@@ -65,7 +65,7 @@
     <string name="menu_home">Section</string>
     <string name="menu_gallery">Student</string>
     <string name="menu_slideshow">Course</string>
-    <string name="menu_dr">Doctors</string>
+    <string name="menu_dr">Instructor</string>
     <string name="menu_enrollment">Enrollment</string>
 
     <string-array name="gender_array">

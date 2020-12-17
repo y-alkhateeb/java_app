@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.baitiwb303_hw_f20_c.Models.AccountM;
 import com.example.baitiwb303_hw_f20_c.Models.CourseM;
 import com.example.baitiwb303_hw_f20_c.Models.EnrollmentM;
 import com.example.baitiwb303_hw_f20_c.Models.InstructorM;
@@ -84,7 +85,13 @@ public class CourseInstructorDetailsActivity extends AppCompatActivity {
                 }
             }
         });
-
+        AccountM accountM = SettingsPref.getAccount(this);
+        if (accountM.getPrivilege().equals("1")){
+            enrollment_this_course.setVisibility(View.GONE);
+        }
+        else{
+            enrollment_this_course.setVisibility(View.VISIBLE);
+        }
         enrollment_this_course.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

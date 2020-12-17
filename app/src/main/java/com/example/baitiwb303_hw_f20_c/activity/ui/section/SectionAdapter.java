@@ -75,7 +75,6 @@ public class SectionAdapter extends RecyclerView.Adapter<SectionAdapter.MyViewHo
             final ArrayList<SectionsM> nlist = new ArrayList<SectionsM>(count);
 
             String filterableString;
-            String filterableString2;
 
             for (int i = 0; i < count; i++) {
                 filterableString = list.get(i).getSection_section_no().toString();
