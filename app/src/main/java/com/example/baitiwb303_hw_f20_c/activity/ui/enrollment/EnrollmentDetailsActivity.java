@@ -66,17 +66,17 @@ public class EnrollmentDetailsActivity extends AppCompatActivity {
                 List<SectionsM> sectionsMS = new ArrayList<>();
 
                 for(EnrollmentM enrol : enrollmentMS){
-                    for(CourseM c : Objects.requireNonNull(courseViewModel.getCourse().getValue())){
-                        if(enrol.getCourse_id().equals(c.getCourse_id())){
-                            courseMS.add(c);
-                            break;
-                        }
-                    }
-
-                    for(SectionsM sec : Objects.requireNonNull(sectionViewModel.getSection().getValue())){
-                        if(enrol.getSection_id().equals(sec.getSection_id())){
-                            sectionsMS.add(sec);
-                            break;
+                    if(accountM.getAccount_id().equals(enrol.getAccount_id())){
+                        for(CourseM c : Objects.requireNonNull(courseViewModel.getCourse().getValue())){
+                                for(SectionsM sec : Objects.requireNonNull(sectionViewModel.getSection().getValue())){
+                                        if(accountM.getAccount_id().equals(enrol.getAccount_id())&&
+                                                enrol.getCourse_id().equals(c.getCourse_id())&&
+                                                enrol.getSection_id().equals(sec.getSection_id())){
+                                            sectionsMS.add(sec);
+                                            courseMS.add(c);
+                                            break;
+                                        }
+                                }
                         }
                     }
                 }

@@ -30,15 +30,24 @@ public class EnrollmentViewModel extends AndroidViewModel {
 
 
     private final MutableLiveData<List<EnrollmentM>> mAllEnrollment;
+    private final MutableLiveData<List<EnrollmentM>> mAllEnrollmentDetails;
     private final List<EnrollmentM> enrollmentMS;
+    private final List<EnrollmentM> enrollmentMSDetails;
     private final DatabaseHelper databaseHelper;
     private JSONArray jsonArray;
 
     public EnrollmentViewModel(@NonNull Application application) {
         super(application);
         mAllEnrollment = new MutableLiveData<>();
+        mAllEnrollmentDetails = new MutableLiveData<>();
         enrollmentMS = new ArrayList<>();
+        enrollmentMSDetails = new ArrayList<>();
         databaseHelper = new DatabaseHelper(application.getApplicationContext());
+
+    }
+
+    public LiveData<List<EnrollmentM>> getEnrollment() {
+        enrollmentMS.clear();
         jsonArray = databaseHelper.get_all_data_groupby("enrollment",Column_Account_ID);
         if (jsonArray.length() > 0) {
             for (int i = 0; i < jsonArray.length(); i++) {
@@ -55,14 +64,12 @@ public class EnrollmentViewModel extends AndroidViewModel {
             }
             mAllEnrollment.setValue(enrollmentMS);
         }
-    }
-
-    public LiveData<List<EnrollmentM>> getEnrollment() {
         return mAllEnrollment;
     }
 
 
     public LiveData<List<EnrollmentM>> getEnrollmentDetails(String AccountId) {
+        enrollmentMSDetails.clear();
         jsonArray = databaseHelper.get_all_data_byId("enrollment",AccountId);
         if (jsonArray.length() > 0) {
             for (int i = 0; i < jsonArray.length(); i++) {
@@ -72,14 +79,14 @@ public class EnrollmentViewModel extends AndroidViewModel {
                     enrollmentM.setAccount_id(jsonArray.getJSONObject(i).getString(Column_Account_ID));
                     enrollmentM.setCourse_id(jsonArray.getJSONObject(i).getString(Column_Course_ID));
                     enrollmentM.setEnrollment_grade(jsonArray.getJSONObject(i).getString(Column_Enrollment_Grade));
-                    enrollmentMS.add(enrollmentM);
+                    enrollmentMSDetails.add(enrollmentM);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
-            mAllEnrollment.setValue(enrollmentMS);
+            mAllEnrollmentDetails.setValue(enrollmentMSDetails);
         }
-        return mAllEnrollment;
+        return mAllEnrollmentDetails;
     }
 
 
