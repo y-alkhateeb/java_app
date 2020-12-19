@@ -675,14 +675,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(Create_TABLE_Instructor);
         db.execSQL(Create_TABLE_Enrollment);
         ContentValues contentValues = new ContentValues();
-        contentValues.put(Column_Account_First_Name, "SVU");
-        contentValues.put(Column_Account_Last_Name, "Uni");
-        contentValues.put(Column_Account_User_Name, "950404087");
+        contentValues.put(Column_Account_First_Name, "Ahmad");
+        contentValues.put(Column_Account_Last_Name, "Rashdan");
+        contentValues.put(Column_Account_User_Name, "88314");
         contentValues.put(Column_Account_Password, "12345678");
         contentValues.put(Column_Account_Reg_Yeer, "2020");
         contentValues.put(Column_Account_Gender, "Male");
         contentValues.put(Column_Account_Address, "Damascus");
-        contentValues.put(Column_Account_Mobile, "0950404087");
+        contentValues.put(Column_Account_Mobile, "0987654321");
         contentValues.put(Column_Account_Privilege, "1");
         db.insert(TABLE_Account, null, contentValues);
     }
